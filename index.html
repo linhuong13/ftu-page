@@ -1,0 +1,3571 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- TODO: Set the document title to the name of your application -->
+    <title>Lovable App</title>
+    <meta name="description" content="Lovable Generated Project">
+    <meta name="author" content="Lovable" />
+
+    <!-- TODO: Update og:title to match your application name -->
+    
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/56d21383-982a-4d7a-95f3-435a8d2afd38/id-preview-28050d8d--cce82900-a1a8-4ba7-bb17-83b1d5ec6a33.lovable.app-1772075039495.png">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Lovable" />
+    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/56d21383-982a-4d7a-95f3-435a8d2afd38/id-preview-28050d8d--cce82900-a1a8-4ba7-bb17-83b1d5ec6a33.lovable.app-1772075039495.png">
+    <meta property="og:title" content="Lovable App">
+  <meta name="twitter:title" content="Lovable App">
+  <meta property="og:description" content="Lovable Generated Project">
+  <meta name="twitter:description" content="Lovable Generated Project">
+</head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+📄 vite.config.ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
+import { componentTagger } from "lovable-tagger";
+
+// https://vitejs.dev/config/
+export default defineConfig(({ mode }) => ({
+  server: {
+    host: "::",
+    port: 8080,
+    hmr: {
+      overlay: false,
+    },
+  },
+  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+}));
+📄 tailwind.config.ts
+import type { Config } from "tailwindcss";
+
+export default {
+  darkMode: ["class"],
+  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  prefix: "",
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
+    extend: {
+      fontFamily: {
+        sans: ["'IBM Plex Sans'", "system-ui", "sans-serif"],
+      },
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+        ftu: {
+          red: "hsl(var(--ftu-red))",
+          "red-light": "hsl(var(--ftu-red-light))",
+          "red-dark": "hsl(var(--ftu-red-dark))",
+          gold: "hsl(var(--ftu-gold))",
+          "gold-light": "hsl(var(--ftu-gold-light))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+        info: {
+          DEFAULT: "hsl(var(--info))",
+          foreground: "hsl(var(--info-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "fade-in": {
+          from: { opacity: "0", transform: "translateY(8px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "slide-in": {
+          from: { transform: "translateX(-100%)" },
+          to: { transform: "translateX(0)" },
+        },
+        "score-fill": {
+          from: { strokeDashoffset: "283" },
+          to: { strokeDashoffset: "var(--score-offset)" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.4s ease-out forwards",
+        "slide-in": "slide-in 0.3s ease-out",
+        "score-fill": "score-fill 1.2s ease-out forwards",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config;
+📄 package.json
+{
+  "name": "vite_react_shadcn_ts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:dev": "vite build --mode development",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.10.0",
+    "@radix-ui/react-accordion": "^1.2.11",
+    "@radix-ui/react-alert-dialog": "^1.1.14",
+    "@radix-ui/react-aspect-ratio": "^1.1.7",
+    "@radix-ui/react-avatar": "^1.1.10",
+    "@radix-ui/react-checkbox": "^1.3.2",
+    "@radix-ui/react-collapsible": "^1.1.11",
+    "@radix-ui/react-context-menu": "^2.2.15",
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-dropdown-menu": "^2.1.15",
+    "@radix-ui/react-hover-card": "^1.1.14",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-menubar": "^1.1.15",
+    "@radix-ui/react-navigation-menu": "^1.2.13",
+    "@radix-ui/react-popover": "^1.1.14",
+    "@radix-ui/react-progress": "^1.1.7",
+    "@radix-ui/react-radio-group": "^1.3.7",
+    "@radix-ui/react-scroll-area": "^1.2.9",
+    "@radix-ui/react-select": "^2.2.5",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slider": "^1.3.5",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-switch": "^1.2.5",
+    "@radix-ui/react-tabs": "^1.1.12",
+    "@radix-ui/react-toast": "^1.2.14",
+    "@radix-ui/react-toggle": "^1.1.9",
+    "@radix-ui/react-toggle-group": "^1.1.10",
+    "@radix-ui/react-tooltip": "^1.2.7",
+    "@tanstack/react-query": "^5.83.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "date-fns": "^3.6.0",
+    "embla-carousel-react": "^8.6.0",
+    "input-otp": "^1.4.2",
+    "lucide-react": "^0.462.0",
+    "next-themes": "^0.3.0",
+    "react": "^18.3.1",
+    "react-day-picker": "^8.10.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.61.1",
+    "react-resizable-panels": "^2.1.9",
+    "react-router-dom": "^6.30.1",
+    "recharts": "^2.15.4",
+    "sonner": "^1.7.4",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^0.9.9",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.0.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^22.16.5",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react-swc": "^3.11.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.32.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^15.15.0",
+    "jsdom": "^20.0.3",
+    "lovable-tagger": "^1.1.13",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0",
+    "vite": "^5.4.19",
+    "vitest": "^3.2.4"
+  }
+}
+📄 src/main.tsx
+import { createRoot } from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
+
+createRoot(document.getElementById("root")!).render(<App />);
+📄 src/App.tsx
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+import AppLayout from "@/components/AppLayout";
+import LoginPage from "@/pages/LoginPage";
+import ProfilePage from "@/pages/ProfilePage";
+import ConductScorePage from "@/pages/ConductScorePage";
+import EventsPage from "@/pages/EventsPage";
+import ProofsPage from "@/pages/ProofsPage";
+import AppealsPage from "@/pages/AppealsPage";
+import SchedulePage from "@/pages/SchedulePage";
+import ChangePasswordPage from "@/pages/ChangePasswordPage";
+import DeptEventsPage from "@/pages/dept/DeptEventsPage";
+import DeptConfirmPage from "@/pages/dept/DeptConfirmPage";
+import TODashboardPage from "@/pages/training/TODashboardPage";
+import TOStudentsPage from "@/pages/training/TOStudentsPage";
+import NotFound from "@/pages/NotFound";
+
+const queryClient = new QueryClient();
+
+function AppRoutes() {
+  const { isAuthenticated, user } = useAuth();
+
+  if (!isAuthenticated) return <LoginPage />;
+
+  const role = user?.role;
+
+  return (
+    <AppLayout>
+      <Routes>
+        <Route path="/" element={
+          role === "admin" ? <TODashboardPage /> :
+          <ProfilePage />
+        } />
+
+        {/* Student routes */}
+        <Route path="/conduct-score" element={<ConductScorePage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/proofs" element={<ProofsPage />} />
+        <Route path="/appeals" element={<AppealsPage />} />
+        <Route path="/schedule" element={<SchedulePage />} />
+        <Route path="/change-password" element={<ChangePasswordPage />} />
+
+        {/* Department routes */}
+        <Route path="/dept/events" element={<DeptEventsPage />} />
+        <Route path="/dept/confirm" element={<DeptConfirmPage />} />
+
+        {/* Training office routes */}
+        <Route path="/training/students" element={<TOStudentsPage />} />
+        <Route path="/training/stats" element={<TODashboardPage />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AppLayout>
+  );
+}
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <AuthProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </AuthProvider>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;
+📄 src/index.css
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 97%;
+    --foreground: 0 0% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 12%;
+
+    --primary: 0 72% 41%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 15% 94%;
+    --secondary-foreground: 0 0% 12%;
+
+    --muted: 0 5% 93%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 10% 89%;
+    --input: 0 10% 89%;
+    --ring: 0 72% 41%;
+
+    --radius: 0.625rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 25%;
+    --sidebar-primary: 0 72% 41%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 15% 96%;
+    --sidebar-accent-foreground: 0 0% 12%;
+    --sidebar-border: 0 10% 92%;
+    --sidebar-ring: 0 72% 41%;
+
+    /* Custom tokens */
+    --ftu-red: 0 72% 41%;
+    --ftu-red-light: 0 60% 95%;
+    --ftu-red-dark: 0 80% 30%;
+    --ftu-gold: 40 90% 50%;
+    --ftu-gold-light: 40 80% 94%;
+    --success: 152 60% 42%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 12%;
+    --info: 210 80% 52%;
+    --info-foreground: 0 0% 100%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(0 72% 41%), hsl(0 80% 30%));
+    --gradient-gold: linear-gradient(135deg, hsl(40 90% 50%), hsl(25 95% 53%));
+    --shadow-card: 0 1px 3px 0 rgba(0,0,0,0.06), 0 1px 2px -1px rgba(0,0,0,0.06);
+    --shadow-elevated: 0 4px 16px -2px rgba(0,0,0,0.08), 0 2px 6px -2px rgba(0,0,0,0.04);
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 72% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 10% 18%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 5% 18%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 0 5% 20%;
+    --input: 0 5% 20%;
+    --ring: 0 72% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  .gradient-gold {
+    background: var(--gradient-gold);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+}
+📄 src/App.css
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+📄 src/lib/utils.ts
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+📄 src/lib/mock-data.ts
+export type UserRole = "student" | "admin";
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  studentId: string;
+  faculty: string;
+  className: string;
+  year: number;
+  role: UserRole;
+  avatar?: string;
+  departmentName?: string;
+}
+
+export interface ConductSubItem {
+  id: string;
+  name: string;
+  score: number;
+  maxScore: number;
+}
+
+export interface ConductCategory {
+  id: string;
+  name: string;
+  maxScore: number;
+  score: number;
+  description: string;
+  subItems: ConductSubItem[];
+}
+
+export interface ConductScore {
+  semester: string;
+  totalScore: number;
+  maxScore: number;
+  grade: string;
+  categories: ConductCategory[];
+}
+
+export interface Event {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  location: string;
+  category: string;
+  points: number;
+  maxParticipants: number;
+  currentParticipants: number;
+  status: "upcoming" | "ongoing" | "completed";
+  registered?: boolean;
+  conductCategory?: string;
+  createdBy?: string;
+  confirmedStudents?: string[];
+  startTime?: string;
+  endTime?: string;
+}
+
+export interface ActivityProof {
+  id: string;
+  studentId: string;
+  studentName: string;
+  activityName: string;
+  category: string;
+  submittedDate: string;
+  proofDescription: string;
+  status: "pending" | "approved" | "rejected";
+  points: number;
+  rejectionReason?: string;
+  fileName?: string;
+}
+
+export interface Appeal {
+  id: string;
+  proofId: string;
+  studentId: string;
+  activityName: string;
+  category: string;
+  rejectionReason: string;
+  appealContent: string;
+  appealDescription: string;
+  appealFiles: string[];
+  submittedDate: string;
+  status: "pending" | "resolved_approved" | "resolved_rejected";
+}
+
+export interface RankingEntry {
+  rank: number;
+  anonymizedId: string;
+  score: number;
+  grade: string;
+  isCurrentUser?: boolean;
+}
+
+export interface Notification {
+  id: string;
+  type: "score_added" | "new_event" | "warning" | "info";
+  title: string;
+  message: string;
+  date: string;
+  read: boolean;
+}
+
+export interface FacultyStats {
+  faculty: string;
+  totalStudents: number;
+  sufficientScore: number;
+  insufficientScore: number;
+  avgScore: number;
+}
+
+export const mockUser: User = {
+  id: "1",
+  name: "Nguyễn Văn An",
+  email: "an.nv@ftu.edu.vn",
+  studentId: "2121115001",
+  faculty: "Khoa Kinh tế Quốc tế",
+  className: "Anh 1 - KTQT61",
+  year: 3,
+  role: "student",
+};
+
+export const mockAdmin: User = {
+  id: "admin1",
+  name: "Quản trị viên",
+  email: "admin@ftu.edu.vn",
+  studentId: "admin@ftu.edu.vn",
+  faculty: "",
+  className: "",
+  year: 0,
+  role: "admin",
+  departmentName: "Ban Quản trị",
+};
+
+export const mockConductScore: ConductScore = {
+  semester: "2025-2026",
+  totalScore: 80,
+  maxScore: 100,
+  grade: "Khá",
+  categories: [
+    {
+      id: "1",
+      name: "Đánh giá về ý thức tham gia học tập",
+      maxScore: 20,
+      score: 10,
+      description: "Tối đa 20 điểm",
+      subItems: [
+        { id: "1.1", name: "Tham gia NCKH, học thuật", score: 10, maxScore: 10 },
+        { id: "1.2", name: "Tinh thần vượt khó", score: 0, maxScore: 2 },
+        { id: "1.3", name: "Kết quả học tập", score: 0, maxScore: 10 },
+      ],
+    },
+    {
+      id: "2",
+      name: "Đánh giá về ý thức chấp hành nội quy, quy chế",
+      maxScore: 25,
+      score: 25,
+      description: "Tối đa 25 điểm",
+      subItems: [
+        { id: "2.1", name: "Chấp hành văn bản chỉ đạo", score: 10, maxScore: 10 },
+        { id: "2.2", name: "Chấp hành nội quy Nhà trường", score: 15, maxScore: 15 },
+      ],
+    },
+    {
+      id: "3",
+      name: "Đánh giá về tham gia hoạt động chính trị, xã hội, văn hoá, thể thao",
+      maxScore: 20,
+      score: 20,
+      description: "Tối đa 20 điểm",
+      subItems: [
+        { id: "3.1", name: "Tham gia hoạt động rèn luyện", score: 10, maxScore: 10 },
+        { id: "3.2", name: "Hoạt động công ích, tình nguyện", score: 5, maxScore: 5 },
+        { id: "3.3", name: "Phòng chống tệ nạn xã hội", score: 5, maxScore: 5 },
+      ],
+    },
+    {
+      id: "4",
+      name: "Đánh giá về ý thức công dân",
+      maxScore: 25,
+      score: 25,
+      description: "Tối đa 25 điểm",
+      subItems: [
+        { id: "4.1", name: "Chấp hành chủ trương, chính sách", score: 15, maxScore: 15 },
+        { id: "4.2", name: "Tham gia hoạt động xã hội, được ghi nhận", score: 10, maxScore: 10 },
+      ],
+    },
+    {
+      id: "5",
+      name: "Đánh giá về ý thức và kết quả khi tham gia công tác cán bộ lớp, các đoàn thể, các CLB trong Nhà trường hoặc SV đạt thành tích đặc biệt trong học tập rèn luyện",
+      maxScore: 10,
+      score: 0,
+      description: "Tối đa 10 điểm",
+      subItems: [
+        { id: "5.1", name: "Tham gia công tác cán bộ lớp, đoàn thể, CLB trong Nhà trường", score: 0, maxScore: 10 },
+        { id: "5.2", name: "Đạt thành tích đặc biệt trong học tập, rèn luyện", score: 0, maxScore: 10 },
+      ],
+    },
+  ],
+};
+
+export const mockEvents: Event[] = [
+  {
+    id: "e1", title: "Ngày hội Hiến máu Nhân đạo 2025", description: "Chương trình hiến máu tình nguyện do Đoàn trường FTU tổ chức.",
+    date: "2025-03-15", location: "Sảnh A - FTU", category: "Tình nguyện", points: 5,
+    maxParticipants: 200, currentParticipants: 145, status: "upcoming",
+    conductCategory: "3", createdBy: "dept1", startTime: "08:00", endTime: "11:00",
+  },
+  {
+    id: "e2", title: "Hội thảo Khởi nghiệp Sinh viên", description: "Workshop chia sẻ kinh nghiệm khởi nghiệp từ các doanh nhân trẻ.",
+    date: "2025-03-20", location: "Hội trường B2", category: "Học thuật", points: 2,
+    maxParticipants: 150, currentParticipants: 89, status: "upcoming",
+    conductCategory: "1", createdBy: "dept1", startTime: "14:00", endTime: "16:30",
+  },
+  {
+    id: "e3", title: "Giải chạy FTU Marathon", description: "Giải chạy marathon truyền thống của FTU lần thứ 5.",
+    date: "2025-04-01", location: "Sân vận động FTU", category: "Thể thao", points: 2,
+    maxParticipants: 500, currentParticipants: 320, status: "upcoming",
+    conductCategory: "4", createdBy: "dept1", startTime: "06:00", endTime: "09:00",
+  },
+  {
+    id: "e4", title: "Workshop English Public Speaking", description: "Luyện kỹ năng thuyết trình tiếng Anh cùng giảng viên nước ngoài.",
+    date: "2025-02-28", location: "Phòng 301 - A2", category: "Học thuật", points: 2,
+    maxParticipants: 50, currentParticipants: 50, status: "completed", registered: true,
+    conductCategory: "1", createdBy: "dept1", confirmedStudents: ["2121115001"], startTime: "09:00", endTime: "11:00",
+  },
+  {
+    id: "e5", title: "Chiến dịch Mùa hè Xanh 2025", description: "Chương trình tình nguyện mùa hè tại các tỉnh miền Trung.",
+    date: "2025-06-15", location: "Các tỉnh miền Trung", category: "Tình nguyện", points: 5,
+    maxParticipants: 100, currentParticipants: 45, status: "upcoming",
+    conductCategory: "3", createdBy: "dept1", startTime: "07:00", endTime: "17:00",
+  },
+];
+
+export const mockProofs: ActivityProof[] = [
+  { id: "p1", studentId: "2121115001", studentName: "Nguyễn Văn An", activityName: "Dạy kèm trẻ em vùng cao", category: "Tình nguyện", submittedDate: "2025-02-10", proofDescription: "Tham gia dạy kèm tại Hà Giang trong 2 tuần", status: "pending", points: 5, fileName: "giay_xac_nhan_tinh_nguyen.pdf" },
+  { id: "p2", studentId: "2121115002", studentName: "Trần Minh Châu", activityName: "Cuộc thi Lập trình ACM/ICPC", category: "Học thuật", submittedDate: "2025-02-08", proofDescription: "Đạt giải Khuyến khích vòng Quốc gia", status: "approved", points: 8, fileName: "chung_nhan_acm.pdf" },
+  { id: "p3", studentId: "2121115003", studentName: "Lê Hoàng Dũng", activityName: "CLB Âm nhạc - Đêm nhạc FTU", category: "Văn nghệ", submittedDate: "2025-02-05", proofDescription: "Biểu diễn guitar trong đêm nhạc trường", status: "pending", points: 3, fileName: "anh_dem_nhac.jpg" },
+  { id: "p4", studentId: "2121115001", studentName: "Nguyễn Văn An", activityName: "Hội nhập & phát triển", category: "Học thuật", submittedDate: "2025-01-20", proofDescription: "Đề tài NCKH cấp trường về Fintech", status: "rejected", points: 6, rejectionReason: "Minh chứng không rõ ràng, thiếu dấu xác nhận của đơn vị tổ chức", fileName: "giay_xac_nhan.pdf" },
+  { id: "p5", studentId: "2121115001", studentName: "Nguyễn Văn An", activityName: "Tình nguyện mùa đông", category: "Tình nguyện", submittedDate: "2025-01-15", proofDescription: "Phát quà cho người vô gia cư", status: "rejected", points: 3, rejectionReason: "Thiếu hình ảnh minh chứng tham gia thực tế", fileName: "don_xac_nhan.pdf" },
+];
+
+export const mockAppeals: Appeal[] = [
+  { id: "a1", proofId: "p4", studentId: "2121115001", activityName: "Hội nhập & phát triển", category: "Học thuật", rejectionReason: "Minh chứng không rõ ràng, thiếu dấu xác nhận của đơn vị tổ chức", appealContent: "Em đã bổ sung giấy xác nhận có dấu mộc đỏ, kính mong thầy/cô xem xét lại ạ", appealDescription: "Em đã bổ sung giấy xác nhận có dấu mộc đỏ từ đơn vị tổ chức", appealFiles: ["giay_xac_nhan_moi.pdf", "anh_hoat_dong.jpg"], submittedDate: "2025-01-25", status: "pending" },
+];
+
+export const mockClassRanking: RankingEntry[] = [
+  { rank: 1, anonymizedId: "SV-****01", score: 95, grade: "Xuất sắc" },
+  { rank: 2, anonymizedId: "SV-****02", score: 92, grade: "Xuất sắc" },
+  { rank: 3, anonymizedId: "SV-****03", score: 88, grade: "Tốt" },
+  { rank: 4, anonymizedId: "SV-****04", score: 85, grade: "Tốt" },
+  { rank: 5, anonymizedId: "Bạn", score: 72, grade: "Khá", isCurrentUser: true },
+  { rank: 6, anonymizedId: "SV-****06", score: 80, grade: "Tốt" },
+  { rank: 7, anonymizedId: "SV-****07", score: 76, grade: "Khá" },
+  { rank: 8, anonymizedId: "SV-****08", score: 73, grade: "Khá" },
+  { rank: 9, anonymizedId: "SV-****09", score: 68, grade: "Khá" },
+  { rank: 10, anonymizedId: "SV-****10", score: 62, grade: "Trung bình" },
+];
+
+export const mockNotifications: Notification[] = [
+  { id: "n1", type: "score_added", title: "Đã cộng điểm", message: "Bạn được cộng 2 điểm từ Workshop English Public Speaking", date: "2025-02-28", read: false },
+  { id: "n2", type: "new_event", title: "Sự kiện mới", message: "Ngày hội Hiến máu Nhân đạo 2025 đã mở đăng ký", date: "2025-03-01", read: false },
+  { id: "n3", type: "warning", title: "Cảnh báo thiếu điểm", message: "Bạn còn thiếu 10 điểm mục 'Hoạt động xã hội' để đạt Tốt", date: "2025-03-02", read: true },
+  { id: "n4", type: "info", title: "Nhắc nhở", message: "Hạn đăng ký Giải chạy FTU Marathon còn 5 ngày", date: "2025-03-05", read: false },
+];
+
+export const mockFacultyStats: FacultyStats[] = [
+  { faculty: "Khoa Kinh tế Quốc tế", totalStudents: 450, sufficientScore: 380, insufficientScore: 70, avgScore: 78 },
+  { faculty: "Khoa Quản trị Kinh doanh", totalStudents: 520, sufficientScore: 430, insufficientScore: 90, avgScore: 75 },
+  { faculty: "Khoa Tài chính Ngân hàng", totalStudents: 380, sufficientScore: 310, insufficientScore: 70, avgScore: 76 },
+  { faculty: "Khoa Luật", totalStudents: 280, sufficientScore: 240, insufficientScore: 40, avgScore: 80 },
+  { faculty: "Khoa Tiếng Anh TM", totalStudents: 350, sufficientScore: 300, insufficientScore: 50, avgScore: 79 },
+  { faculty: "Khoa Tiếng Nhật", totalStudents: 180, sufficientScore: 155, insufficientScore: 25, avgScore: 81 },
+  { faculty: "Khoa Tiếng Trung", totalStudents: 160, sufficientScore: 130, insufficientScore: 30, avgScore: 77 },
+  { faculty: "Khoa CNTT", totalStudents: 200, sufficientScore: 170, insufficientScore: 30, avgScore: 79 },
+];
+
+export const mockRegisteredStudents = [
+  { id: "2121115001", name: "Nguyễn Văn An", className: "Anh 1 - KTQT61", confirmed: true },
+  { id: "2121115002", name: "Trần Minh Châu", className: "Anh 1 - KTQT61", confirmed: false },
+  { id: "2121115003", name: "Lê Hoàng Dũng", className: "Anh 2 - KTQT61", confirmed: false },
+  { id: "2121115004", name: "Phạm Thu Hà", className: "Anh 1 - KTQT61", confirmed: true },
+  { id: "2121115005", name: "Hoàng Minh Tuấn", className: "Anh 2 - KTQT61", confirmed: false },
+];
+
+export function getGradeFromScore(score: number): string {
+  if (score >= 90) return "Xuất sắc";
+  if (score >= 80) return "Giỏi";
+  if (score >= 65) return "Khá";
+  return "Trung bình";
+}
+
+export function getGradeColor(grade: string): string {
+  switch (grade) {
+    case "Xuất sắc": return "text-ftu-gold";
+    case "Giỏi": return "text-success";
+    case "Khá": return "text-info";
+    case "Trung bình": return "text-warning";
+    default: return "text-muted-foreground";
+  }
+}
+📄 src/contexts/AuthContext.tsx
+import React, { createContext, useContext, useState, ReactNode } from "react";
+import { User, UserRole, mockUser, mockAdmin } from "@/lib/mock-data";
+
+interface AuthContextType {
+  user: User | null;
+  isAuthenticated: boolean;
+  login: (role: UserRole) => void;
+  logout: () => void;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
+
+  const login = (role: UserRole) => {
+    if (role === "admin") setUser(mockAdmin);
+    else setUser(mockUser);
+  };
+
+  const logout = () => setUser(null);
+
+  return (
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) throw new Error("useAuth must be used within AuthProvider");
+  return context;
+};
+📄 src/components/AppLayout.tsx
+import { ReactNode, useState, useRef, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { mockNotifications } from "@/lib/mock-data";
+import {
+  LayoutDashboard, Calendar, FileText,
+  LogOut, Menu, X, GraduationCap, ClipboardList, Users, CheckSquare,
+  Building2, BarChart3, Bell, User, ChevronDown, KeyRound
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import ftuLogo from "@/assets/ftu-logo.png";
+
+const studentNav = [
+  { label: "Thông tin cá nhân", icon: User, path: "/" },
+  { label: "Điểm rèn luyện", icon: ClipboardList, path: "/conduct-score" },
+  { label: "Thời khóa biểu", icon: Calendar, path: "/schedule" },
+  { label: "Sự kiện", icon: GraduationCap, path: "/events" },
+  { label: "Minh chứng", icon: FileText, path: "/proofs" },
+  { label: "Khiếu nại", icon: Building2, path: "/appeals" },
+];
+
+const adminNav = [
+  { label: "Tổng quan", icon: LayoutDashboard, path: "/" },
+  { label: "Quản lý hoạt động", icon: Calendar, path: "/dept/events" },
+  { label: "Xác nhận tham gia", icon: CheckSquare, path: "/dept/confirm" },
+  { label: "Quản lý sinh viên", icon: Users, path: "/training/students" },
+  { label: "Thống kê", icon: BarChart3, path: "/training/stats" },
+];
+
+export default function AppLayout({ children }: { children: ReactNode }) {
+  const { user, logout } = useAuth();
+  const location = useLocation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  const notifRef = useRef<HTMLDivElement>(null);
+
+  const navItems = user?.role === "admin" ? adminNav : studentNav;
+  const unreadCount = mockNotifications.filter(n => !n.read).length;
+
+  // Close dropdowns on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) setShowUserMenu(false);
+      if (notifRef.current && !notifRef.current.contains(e.target as Node)) setShowNotifications(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  return (
+    <div className="flex min-h-screen bg-background">
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-40 bg-foreground/20 md:hidden" onClick={() => setSidebarOpen(false)} />
+      )}
+
+      {/* Sidebar */}
+      <aside className={`fixed z-50 inset-y-0 left-0 w-64 bg-card border-r border-border transform transition-transform duration-200 md:translate-x-0 md:static md:z-auto ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+        <div className="flex flex-col h-full">
+          <div className="flex items-center gap-3 px-5 py-5 border-b border-border">
+            <img src={ftuLogo} alt="FTU Logo" className="w-9 h-9 rounded-lg object-cover" />
+            <div>
+              <h1 className="text-sm font-bold text-foreground tracking-tight">FTU R-Point</h1>
+              <p className="text-[11px] text-muted-foreground">Điểm rèn luyện</p>
+            </div>
+            <button className="ml-auto md:hidden" onClick={() => setSidebarOpen(false)}>
+              <X className="w-5 h-5 text-muted-foreground" />
+            </button>
+          </div>
+
+          <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setSidebarOpen(false)}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                    isActive
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                  }`}
+                >
+                  <item.icon className="w-[18px] h-[18px]" />
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* User info at bottom - no logout button */}
+          <div className="border-t border-border p-4">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-sm font-semibold text-foreground">
+                {user?.name.charAt(0)}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-foreground truncate">{user?.name}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      {/* Main content */}
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Top bar */}
+        <header className="h-14 border-b border-border bg-card flex items-center px-4 md:px-6 sticky top-0 z-30">
+          <button className="md:hidden mr-3" onClick={() => setSidebarOpen(true)}>
+            <Menu className="w-5 h-5 text-foreground" />
+          </button>
+          <div className="flex-1" />
+
+          {/* Notification bell */}
+          <div className="relative mr-3" ref={notifRef}>
+            <button
+              onClick={() => setShowNotifications(!showNotifications)}
+              className="relative p-2 rounded-lg text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+            >
+              <Bell className="w-5 h-5" />
+              {unreadCount > 0 && (
+                <span className="absolute -bottom-0.5 -right-0.5 w-5 h-5 bg-destructive text-destructive-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
+                  {unreadCount}
+                </span>
+              )}
+            </button>
+            {showNotifications && (
+              <div className="absolute right-0 top-full mt-2 w-80 bg-card border border-border rounded-xl shadow-elevated z-50 overflow-hidden">
+                <div className="p-3 border-b border-border">
+                  <p className="text-sm font-semibold text-foreground">Thông báo</p>
+                </div>
+                <div className="max-h-72 overflow-y-auto">
+                  {mockNotifications.map(n => (
+                    <div key={n.id} className={`px-3 py-2.5 border-b border-border last:border-0 hover:bg-secondary/50 transition-colors ${!n.read ? "bg-primary/5" : ""}`}>
+                      <div className="flex items-start gap-2">
+                        <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${
+                          n.type === "score_added" ? "bg-success" :
+                          n.type === "warning" ? "bg-warning" :
+                          n.type === "new_event" ? "bg-info" :
+                          "bg-muted-foreground"
+                        }`} />
+                        <div className="min-w-0">
+                          <p className="text-sm font-medium text-foreground">{n.title}</p>
+                          <p className="text-xs text-muted-foreground line-clamp-2">{n.message}</p>
+                          <p className="text-[10px] text-muted-foreground mt-1">{new Date(n.date).toLocaleDateString("vi-VN")}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* User dropdown */}
+          <div className="relative" ref={userMenuRef}>
+            <button
+              onClick={() => setShowUserMenu(!showUserMenu)}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-secondary transition-colors"
+            >
+              <div className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center text-xs font-semibold text-foreground">
+                {user?.name.charAt(0)}
+              </div>
+              <span className="text-sm font-medium text-foreground hidden sm:block">{user?.name}</span>
+              <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />
+            </button>
+            {showUserMenu && (
+              <div className="absolute right-0 top-full mt-2 w-64 bg-card border border-border rounded-xl shadow-elevated z-50 overflow-hidden">
+                {/* Profile info */}
+                <div className="p-4 border-b border-border">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-sm font-bold text-primary-foreground">
+                      {user?.name.charAt(0)}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-foreground truncate">{user?.name}</p>
+                      <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+                    </div>
+                  </div>
+                </div>
+                <Link
+                  to="/change-password"
+                  onClick={() => setShowUserMenu(false)}
+                  className="w-full flex items-center gap-2.5 px-4 py-3 text-sm text-foreground hover:bg-secondary transition-colors border-t border-border"
+                >
+                  <KeyRound className="w-4 h-4" />
+                  Đổi mật khẩu
+                </Link>
+                <button
+                  onClick={() => { setShowUserMenu(false); logout(); }}
+                  className="w-full flex items-center gap-2.5 px-4 py-3 text-sm text-destructive hover:bg-destructive/5 transition-colors border-t border-border"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Đăng xuất
+                </button>
+              </div>
+            )}
+          </div>
+        </header>
+
+        <main className="flex-1 p-4 md:p-6 overflow-auto">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
+}
+📄 src/components/NavLink.tsx
+import { NavLink as RouterNavLink, NavLinkProps } from "react-router-dom";
+import { forwardRef } from "react";
+import { cn } from "@/lib/utils";
+
+interface NavLinkCompatProps extends Omit<NavLinkProps, "className"> {
+  className?: string;
+  activeClassName?: string;
+  pendingClassName?: string;
+}
+
+const NavLink = forwardRef<HTMLAnchorElement, NavLinkCompatProps>(
+  ({ className, activeClassName, pendingClassName, to, ...props }, ref) => {
+    return (
+      <RouterNavLink
+        ref={ref}
+        to={to}
+        className={({ isActive, isPending }) =>
+          cn(className, isActive && activeClassName, isPending && pendingClassName)
+        }
+        {...props}
+      />
+    );
+  },
+);
+
+NavLink.displayName = "NavLink";
+
+export { NavLink };
+📄 src/components/ScoreCircle.tsx
+interface ScoreCircleProps {
+  score: number;
+  maxScore: number;
+  size?: number;
+  label?: string;
+}
+
+export default function ScoreCircle({ score, maxScore, size = 140, label }: ScoreCircleProps) {
+  const percentage = (score / maxScore) * 100;
+  const radius = 45;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (percentage / 100) * circumference;
+
+  const getColor = () => {
+    if (percentage >= 90) return "hsl(var(--ftu-gold))";
+    if (percentage >= 80) return "hsl(var(--success))";
+    if (percentage >= 65) return "hsl(var(--info))";
+    if (percentage >= 50) return "hsl(var(--warning))";
+    return "hsl(var(--destructive))";
+  };
+
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <div className="relative" style={{ width: size, height: size }}>
+        <svg viewBox="0 0 100 100" className="transform -rotate-90" width={size} height={size}>
+          <circle cx="50" cy="50" r={radius} fill="none" stroke="hsl(var(--border))" strokeWidth="8" />
+          <circle
+            cx="50" cy="50" r={radius} fill="none"
+            stroke={getColor()}
+            strokeWidth="8"
+            strokeLinecap="round"
+            strokeDasharray={circumference}
+            strokeDashoffset={offset}
+            className="transition-all duration-1000 ease-out"
+          />
+        </svg>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span className="text-2xl font-bold text-foreground">{score}</span>
+          <span className="text-xs text-muted-foreground">/ {maxScore}</span>
+        </div>
+      </div>
+      {label && <span className="text-sm font-medium text-muted-foreground">{label}</span>}
+    </div>
+  );
+}
+📄 src/pages/LoginPage.tsx
+import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { UserRole } from "@/lib/mock-data";
+import { GraduationCap, ShieldCheck, Eye, EyeOff, ArrowLeft, Phone, KeyRound } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import ftuLogo from "@/assets/ftu-logo.png";
+import { useToast } from "@/hooks/use-toast";
+
+const roles = [
+  { role: "student" as UserRole, label: "Sinh viên", icon: GraduationCap, placeholder: "VD: 2121115001", default: "2121115001" },
+  { role: "admin" as UserRole, label: "Admin", icon: ShieldCheck, placeholder: "VD: admin@ftu.edu.vn", default: "admin@ftu.edu.vn" },
+];
+
+type Screen = "login" | "forgot-step1" | "forgot-step2" | "forgot-step3";
+
+export default function LoginPage() {
+  const { login } = useAuth();
+  const { toast } = useToast();
+  const [selectedRole, setSelectedRole] = useState<UserRole>("student");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [screen, setScreen] = useState<Screen>("login");
+  const [otpCode, setOtpCode] = useState("");
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    login(selectedRole);
+  };
+
+  const handleForgotStep1 = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({ title: "Đã gửi mã OTP", description: "Mã xác nhận đã được gửi về số điện thoại của bạn." });
+    setScreen("forgot-step2");
+  };
+
+  const handleForgotStep2 = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (otpCode.length < 4) {
+      toast({ title: "Mã OTP không hợp lệ", variant: "destructive" });
+      return;
+    }
+    setScreen("forgot-step3");
+  };
+
+  const handleForgotStep3 = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({ title: "Đổi mật khẩu thành công!", description: "Vui lòng đăng nhập lại với mật khẩu mới." });
+    setScreen("login");
+  };
+
+  const currentRole = roles.find(r => r.role === selectedRole)!;
+
+  const renderPasswordInput = (
+    placeholder: string,
+    show: boolean,
+    setShow: (v: boolean) => void,
+    defaultValue?: string,
+    label?: string
+  ) => (
+    <div>
+      {label && <label className="text-sm font-medium text-foreground mb-1.5 block">{label}</label>}
+      <div className="relative">
+        <Input
+          type={show ? "text" : "password"}
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+          className="h-11 pr-10"
+        />
+        <button
+          type="button"
+          onClick={() => setShow(!show)}
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+        >
+          {show ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen flex">
+      {/* Left - Branding */}
+      <div className="hidden lg:flex lg:w-1/2 gradient-primary flex-col justify-center items-center p-12 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="absolute rounded-full border border-primary-foreground/20"
+              style={{
+                width: `${200 + i * 120}px`, height: `${200 + i * 120}px`,
+                top: "50%", left: "50%", transform: "translate(-50%, -50%)",
+              }}
+            />
+          ))}
+        </div>
+        <div className="relative z-10 text-center">
+          <img src={ftuLogo} alt="FTU Logo" className="w-24 h-24 rounded-2xl mx-auto mb-8 shadow-lg" />
+          <h1 className="text-4xl font-bold text-primary-foreground mb-3">FTU R-Point</h1>
+          <p className="text-primary-foreground/80 text-lg max-w-md">
+            Hệ thống Quản lý & Theo dõi Điểm rèn luyện Sinh viên
+          </p>
+          <div className="mt-12 flex gap-6 text-primary-foreground/60 text-sm">
+            <div className="text-center">
+              <p className="text-2xl font-bold text-primary-foreground">15,000+</p>
+              <p>Sinh viên</p>
+            </div>
+            <div className="w-px bg-primary-foreground/20" />
+            <div className="text-center">
+              <p className="text-2xl font-bold text-primary-foreground">200+</p>
+              <p>Sự kiện/năm</p>
+            </div>
+            <div className="w-px bg-primary-foreground/20" />
+            <div className="text-center">
+              <p className="text-2xl font-bold text-primary-foreground">8</p>
+              <p>Khoa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right - Forms */}
+      <div className="flex-1 flex items-center justify-center p-6 bg-background">
+        <div className="w-full max-w-sm">
+          <div className="lg:hidden flex items-center gap-3 mb-8 justify-center">
+            <img src={ftuLogo} alt="FTU Logo" className="w-10 h-10 rounded-xl" />
+            <h1 className="text-xl font-bold text-foreground">FTU R-Point</h1>
+          </div>
+
+          {/* Screen: Login */}
+          {screen === "login" && (
+            <>
+              <h2 className="text-2xl font-bold text-foreground mb-1">Đăng nhập</h2>
+              <p className="text-muted-foreground text-sm mb-8">Chào mừng bạn quay trở lại</p>
+
+              <div className="flex gap-2 mb-6">
+                {roles.map(({ role, label, icon: Icon }) => (
+                  <button
+                    key={role}
+                    onClick={() => setSelectedRole(role)}
+                    className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-3 px-2 rounded-lg text-xs font-medium transition-all border ${
+                      selectedRole === role
+                        ? "border-primary bg-primary/5 text-primary"
+                        : "border-border bg-card text-muted-foreground hover:bg-secondary"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {label}
+                  </button>
+                ))}
+              </div>
+
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">
+                    {selectedRole === "student" ? "Mã sinh viên" : "Email"}
+                  </label>
+                  <Input
+                    placeholder={currentRole.placeholder}
+                    defaultValue={currentRole.default}
+                    className="h-11"
+                  />
+                </div>
+                {renderPasswordInput("••••••••", showPassword, setShowPassword, "password", "Mật khẩu")}
+                <Button type="submit" className="w-full h-11 font-semibold">
+                  Đăng nhập
+                </Button>
+              </form>
+
+              <button
+                onClick={() => setScreen("forgot-step1")}
+                className="w-full text-center text-sm text-primary hover:underline mt-4"
+              >
+                Quên mật khẩu?
+              </button>
+
+              <p className="text-center text-xs text-muted-foreground mt-6">
+                MVP Demo — Dữ liệu mẫu, không cần mật khẩu thật
+              </p>
+            </>
+          )}
+
+          {/* Screen: Forgot Password Step 1 - Nhập MSSV + SĐT */}
+          {screen === "forgot-step1" && (
+            <>
+              <button onClick={() => setScreen("login")} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6">
+                <ArrowLeft className="w-4 h-4" /> Quay lại đăng nhập
+              </button>
+              <h2 className="text-2xl font-bold text-foreground mb-1">Quên mật khẩu</h2>
+              <p className="text-muted-foreground text-sm mb-8">Nhập mã sinh viên và số điện thoại đã đăng ký</p>
+
+              <form onSubmit={handleForgotStep1} className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">Mã sinh viên</label>
+                  <Input placeholder="VD: 2121115001" className="h-11" />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">Số điện thoại</label>
+                  <div className="relative">
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input placeholder="VD: 0901234567" className="h-11 pl-9" />
+                  </div>
+                </div>
+                <Button type="submit" className="w-full h-11 font-semibold">
+                  Gửi mã xác nhận
+                </Button>
+              </form>
+            </>
+          )}
+
+          {/* Screen: Forgot Password Step 2 - Nhập OTP */}
+          {screen === "forgot-step2" && (
+            <>
+              <button onClick={() => setScreen("forgot-step1")} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6">
+                <ArrowLeft className="w-4 h-4" /> Quay lại
+              </button>
+              <h2 className="text-2xl font-bold text-foreground mb-1">Nhập mã xác nhận</h2>
+              <p className="text-muted-foreground text-sm mb-8">Mã OTP đã được gửi về số điện thoại của bạn</p>
+
+              <form onSubmit={handleForgotStep2} className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">Mã OTP</label>
+                  <div className="relative">
+                    <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input
+                      placeholder="Nhập mã 6 số"
+                      value={otpCode}
+                      onChange={(e) => setOtpCode(e.target.value)}
+                      className="h-11 pl-9 text-center tracking-[0.5em] font-mono text-lg"
+                      maxLength={6}
+                    />
+                  </div>
+                </div>
+                <Button type="submit" className="w-full h-11 font-semibold">
+                  Xác nhận
+                </Button>
+                <button type="button" onClick={handleForgotStep1} className="w-full text-center text-sm text-primary hover:underline">
+                  Gửi lại mã
+                </button>
+              </form>
+            </>
+          )}
+
+          {/* Screen: Forgot Password Step 3 - Đặt mật khẩu mới */}
+          {screen === "forgot-step3" && (
+            <>
+              <button onClick={() => setScreen("forgot-step2")} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6">
+                <ArrowLeft className="w-4 h-4" /> Quay lại
+              </button>
+              <h2 className="text-2xl font-bold text-foreground mb-1">Đặt mật khẩu mới</h2>
+              <p className="text-muted-foreground text-sm mb-8">Nhập mật khẩu mới cho tài khoản của bạn</p>
+
+              <form onSubmit={handleForgotStep3} className="space-y-4">
+                {renderPasswordInput("Nhập mật khẩu mới", showNewPassword, setShowNewPassword, undefined, "Mật khẩu mới")}
+                {renderPasswordInput("Xác nhận mật khẩu mới", showConfirmPassword, setShowConfirmPassword, undefined, "Xác nhận mật khẩu")}
+                <Button type="submit" className="w-full h-11 font-semibold">
+                  Đổi mật khẩu
+                </Button>
+              </form>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+📄 src/pages/ProfilePage.tsx
+import { useAuth } from "@/contexts/AuthContext";
+import { mockConductScore, mockEvents, getGradeColor } from "@/lib/mock-data";
+import { Card, CardContent } from "@/components/ui/card";
+import { User, Mail, GraduationCap, Building, BookOpen, Calendar, Clock, TrendingUp, FileText } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+
+export default function ProfilePage() {
+  const { user } = useAuth();
+  const score = mockConductScore;
+  if (!user) return null;
+
+  const fields = [
+    { label: "Họ và tên", value: user.name, icon: User },
+    { label: "Email", value: user.email, icon: Mail },
+    { label: "MSSV", value: user.studentId, icon: GraduationCap },
+    { label: "Khoa", value: user.faculty, icon: Building },
+    { label: "Lớp", value: user.className, icon: BookOpen },
+  ];
+
+  return (
+    <div className="space-y-6 animate-fade-in">
+      {/* Greeting */}
+      <div>
+        <h2 className="text-2xl font-bold text-foreground">
+          Xin chào, {user.name.split(" ").pop()} 👋
+        </h2>
+        <p className="text-sm text-muted-foreground mt-1">
+          {score.semester} · Năm {user.year}
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Personal info card */}
+        <Card className="shadow-card">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center text-2xl font-bold text-primary-foreground">
+                {user.name.charAt(0)}
+              </div>
+              <div>
+                <p className="text-lg font-bold text-foreground">{user.name}</p>
+                <p className="text-sm text-muted-foreground">Năm {user.year} · {user.faculty}</p>
+              </div>
+            </div>
+            <div className="space-y-4">
+              {fields.map((f) => (
+                <div key={f.label} className="flex items-center gap-3">
+                  <f.icon className="w-4 h-4 text-muted-foreground shrink-0" />
+                  <div className="flex-1">
+                    <p className="text-xs text-muted-foreground">{f.label}</p>
+                    <p className="text-sm font-medium text-foreground">{f.value}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Right column: Score + Quick stats */}
+        <div className="space-y-4">
+          {/* Score progress card */}
+          <Card className="shadow-card border-l-4 border-l-primary">
+            <CardContent className="pt-5 pb-4">
+              <div className="flex items-center justify-between mb-2">
+                <p className="text-sm font-semibold text-foreground">Tiến độ điểm rèn luyện</p>
+                <span className={`text-sm font-bold ${getGradeColor(score.grade)}`}>{score.totalScore}/{score.maxScore} — {score.grade}</span>
+              </div>
+              <Progress value={(score.totalScore / score.maxScore) * 100} className="h-3" />
+              <p className="text-xs text-muted-foreground mt-2">
+                {score.totalScore >= 90 ? "Bạn đang đạt mức Xuất sắc!" : score.totalScore >= 80 ? "Bạn đang đạt mức Giỏi!" : `Cần thêm ${80 - score.totalScore} điểm để đạt loại Giỏi`}
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Quick stats grid */}
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { label: "Sự kiện đã tham gia", value: "12", icon: Calendar, color: "text-info" },
+              { label: "Minh chứng chờ duyệt", value: "1", icon: FileText, color: "text-warning" },
+              { label: "Điểm cộng tháng này", value: "+5", icon: TrendingUp, color: "text-success" },
+              { label: "Sự kiện sắp tới", value: String(mockEvents.filter(e => e.status === "upcoming").length), icon: Clock, color: "text-primary" },
+            ].map((stat) => (
+              <Card key={stat.label} className="shadow-card">
+                <CardContent className="pt-4 pb-3">
+                  <stat.icon className={`w-4 h-4 ${stat.color} mb-1.5`} />
+                  <p className="text-lg font-bold text-foreground">{stat.value}</p>
+                  <p className="text-[11px] text-muted-foreground">{stat.label}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+📄 src/pages/ConductScorePage.tsx
+import { useState } from "react";
+import { mockConductScore, getGradeColor } from "@/lib/mock-data";
+import ScoreCircle from "@/components/ScoreCircle";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChevronDown, ChevronRight } from "lucide-react";
+
+const categoryEmojis: Record<string, string> = {
+  "1": "1️⃣",
+  "2": "2️⃣",
+  "3": "3️⃣",
+  "4": "4️⃣",
+  "5": "5️⃣",
+};
+
+export default function ConductScorePage() {
+  const score = mockConductScore;
+  const [expandedCat, setExpandedCat] = useState<string | null>(null);
+
+  const toggleCat = (id: string) => {
+    setExpandedCat(prev => prev === id ? null : id);
+  };
+
+  return (
+    <div className="space-y-6 animate-fade-in max-w-3xl">
+      <div>
+        <h2 className="text-2xl font-bold text-foreground">Điểm rèn luyện</h2>
+        <p className="text-sm text-muted-foreground mt-1">{score.semester}</p>
+      </div>
+
+      <Card className="shadow-card">
+        <CardContent className="pt-6 flex flex-col sm:flex-row items-center gap-6">
+          <ScoreCircle score={score.totalScore} maxScore={score.maxScore} size={180} />
+          <div className="flex-1 text-center sm:text-left">
+            <p className="text-sm text-muted-foreground">Xếp loại</p>
+            <p className={`text-3xl font-bold ${getGradeColor(score.grade)}`}>{score.grade}</p>
+            <div className="mt-4">
+              <div className="bg-secondary rounded-lg p-3">
+                <p className="text-muted-foreground text-xs">Tổng điểm</p>
+                <p className="font-bold text-foreground text-lg">{score.totalScore}/{score.maxScore}</p>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* 4 Main Categories - Expandable */}
+      <Card className="shadow-card">
+        <CardHeader>
+          <CardTitle className="text-base font-semibold">Chi tiết theo từng mục</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {score.categories.map((cat) => {
+            const isExpanded = expandedCat === cat.id;
+            const emoji = categoryEmojis[cat.id] || `${cat.id}.`;
+            return (
+              <div key={cat.id} className="border border-border rounded-lg overflow-hidden">
+                <button
+                  onClick={() => toggleCat(cat.id)}
+                  className="w-full flex items-center gap-3 p-4 hover:bg-secondary/50 transition-colors text-left"
+                >
+                  {isExpanded ? <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" /> : <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />}
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-foreground text-sm">
+                      {emoji} {cat.name}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-0.5">({cat.description})</p>
+                  </div>
+                  <span className="text-sm font-bold text-foreground shrink-0">{cat.score}/{cat.maxScore}</span>
+                </button>
+
+                {/* Expanded detail */}
+                {isExpanded && cat.subItems.length > 0 && (
+                  <div className="border-t border-border bg-secondary/30 px-4 py-3 space-y-2">
+                    {cat.subItems.map((d) => (
+                      <div key={d.id} className="flex items-center justify-between text-sm">
+                        <span className="text-muted-foreground">{d.id} {d.name}</span>
+                        <span className="font-medium text-foreground">{d.score}/{d.maxScore}</span>
+                      </div>
+                    ))}
+                    <div className="border-t border-border pt-2 mt-2 flex items-center justify-between text-sm">
+                      <span className="font-semibold text-foreground">👉 Tổng mục {cat.id}</span>
+                      <span className="font-bold text-primary">{cat.score}/{cat.maxScore}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </CardContent>
+      </Card>
+
+      {/* Grade scale */}
+      <Card className="shadow-card">
+        <CardHeader>
+          <CardTitle className="text-base font-semibold">Thang xếp loại</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+            {[
+              { label: "Xuất sắc", range: "90-100", color: "bg-ftu-gold-light text-ftu-gold border border-ftu-gold/20" },
+              { label: "Giỏi", range: "80-89", color: "bg-success/10 text-success border border-success/20" },
+              { label: "Khá", range: "65-79", color: "bg-info/10 text-info border border-info/20" },
+              { label: "Trung bình", range: "< 65", color: "bg-warning/10 text-warning border border-warning/20" },
+            ].map((g) => (
+              <div key={g.label} className={`rounded-lg p-2.5 ${g.color} font-medium`}>
+                <p className="font-bold">{g.label}</p>
+                <p className="opacity-70 mt-0.5">{g.range}</p>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+📄 src/pages/EventsPage.tsx
+import { useState, useMemo } from "react";
+import { mockEvents, Event } from "@/lib/mock-data";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Calendar, MapPin, Users, Search, AlertTriangle, X, ExternalLink } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+
+const categories = ["Tất cả", "Tình nguyện", "Học thuật", "Thể thao", "Văn nghệ"];
+const tabs = [
+  { key: "upcoming", label: "Sắp tới" },
+  { key: "registered", label: "Đã đăng ký" },
+];
+
+const classSchedule = [
+  { dayOfWeek: 3, startPeriod: 1, endPeriod: 3 },
+  { dayOfWeek: 4, startPeriod: 1, endPeriod: 3 },
+  { dayOfWeek: 5, startPeriod: 1, endPeriod: 3 },
+  { dayOfWeek: 2, startPeriod: 4, endPeriod: 6 },
+  { dayOfWeek: 5, startPeriod: 4, endPeriod: 6 },
+  { dayOfWeek: 6, startPeriod: 4, endPeriod: 6 },
+  { dayOfWeek: 4, startPeriod: 7, endPeriod: 9 },
+  { dayOfWeek: 6, startPeriod: 7, endPeriod: 9 },
+  { dayOfWeek: 3, startPeriod: 10, endPeriod: 12 },
+  { dayOfWeek: 6, startPeriod: 10, endPeriod: 12 },
+];
+
+const dayNames: Record<number, string> = {
+  2: "Thứ 2", 3: "Thứ 3", 4: "Thứ 4", 5: "Thứ 5", 6: "Thứ 6", 7: "Thứ 7", 8: "CN"
+};
+
+function getEventDayOfWeek(dateStr: string): number {
+  const d = new Date(dateStr);
+  const dow = d.getDay();
+  return dow === 0 ? 8 : dow + 1;
+}
+
+function checkScheduleConflict(event: Event): string | null {
+  const dow = getEventDayOfWeek(event.date);
+  const conflicts = classSchedule.filter((c) => c.dayOfWeek === dow);
+  if (conflicts.length > 0) {
+    const dayName = dayNames[dow] || "";
+    return `Trùng lịch học ${dayName} (tiết ${conflicts.map(c => `${c.startPeriod}-${c.endPeriod}`).join(", ")})`;
+  }
+  return null;
+}
+
+export default function EventsPage() {
+  const [events, setEvents] = useState(mockEvents);
+  const [filter, setFilter] = useState("Tất cả");
+  const [search, setSearch] = useState("");
+  const [activeTab, setActiveTab] = useState("upcoming");
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const { toast } = useToast();
+
+  const filtered = useMemo(() => {
+    return events.filter((e) => {
+      const matchCat = filter === "Tất cả" || e.category === filter;
+      const matchSearch = e.title.toLowerCase().includes(search.toLowerCase());
+      const matchTab = activeTab === "upcoming"
+        ? !e.registered
+        : e.registered === true;
+      return matchCat && matchSearch && matchTab;
+    });
+  }, [events, filter, search, activeTab]);
+
+  const handleRegister = (eventId: string) => {
+    setEvents((prev) =>
+      prev.map((e) =>
+        e.id === eventId
+          ? { ...e, registered: true, currentParticipants: e.currentParticipants + 1 }
+          : e
+      )
+    );
+    setSelectedEvent(null);
+    toast({ title: "Đăng ký thành công!", description: "Bạn đã đăng ký tham gia sự kiện." });
+  };
+
+  return (
+    <div className="space-y-6 animate-fade-in">
+      <div>
+        <h2 className="text-2xl font-bold text-foreground">Sự kiện</h2>
+        <p className="text-sm text-muted-foreground mt-1">Khám phá và đăng ký các sự kiện của trường</p>
+      </div>
+
+      {/* Tabs */}
+      <div className="flex gap-1 bg-secondary rounded-lg p-1 w-fit">
+        {tabs.map((tab) => (
+          <button
+            key={tab.key}
+            onClick={() => setActiveTab(tab.key)}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+              activeTab === tab.key
+                ? "bg-background text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Search */}
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+        <Input
+          placeholder="Tìm sự kiện..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="pl-9 h-10"
+        />
+      </div>
+
+      {/* Category filters - below search */}
+      <div className="flex gap-1.5 flex-wrap">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setFilter(cat)}
+            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+              filter === cat
+                ? "bg-primary text-primary-foreground"
+                : "bg-secondary text-muted-foreground hover:bg-border"
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* Event cards */}
+      <div className="grid gap-4 md:grid-cols-2">
+        {filtered.map((event) => {
+          const conflict = checkScheduleConflict(event);
+          return (
+            <Card key={event.id} className="shadow-card overflow-hidden hover:shadow-elevated transition-shadow">
+              <CardContent className="p-5">
+                <div className="flex items-start justify-between mb-3">
+                  <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+                    event.registered ? "bg-success/10 text-success" :
+                    event.status === "upcoming" ? "bg-primary/10 text-primary" :
+                    "bg-secondary text-muted-foreground"
+                  }`}>
+                    {event.registered ? "Đã đăng ký" : event.status === "upcoming" ? "Sắp diễn ra" : "Đang diễn ra"}
+                  </span>
+                  <span className="text-xs font-bold text-primary bg-primary/5 px-2 py-1 rounded-md">
+                    +{event.points} điểm
+                  </span>
+                </div>
+
+                <h3 className="text-base font-semibold text-foreground mb-2">{event.title}</h3>
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{event.description}</p>
+
+                {conflict && !event.registered && event.status !== "completed" && (
+                  <div className="flex items-center gap-2 mb-3 p-2 rounded-lg bg-warning/10 border border-warning/20">
+                    <AlertTriangle className="w-4 h-4 text-warning shrink-0" />
+                    <p className="text-xs text-warning font-medium">{conflict}</p>
+                  </div>
+                )}
+
+                <div className="space-y-1.5 text-xs text-muted-foreground mb-4">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-3.5 h-3.5" />
+                    {new Date(event.date).toLocaleDateString("vi-VN", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-3.5 h-3.5" /> {event.location}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Users className="w-3.5 h-3.5" /> {event.currentParticipants}/{event.maxParticipants} người
+                  </div>
+                </div>
+
+                <div className="h-1.5 bg-secondary rounded-full overflow-hidden mb-4">
+                  <div
+                    className="h-full rounded-full gradient-primary"
+                    style={{ width: `${(event.currentParticipants / event.maxParticipants) * 100}%` }}
+                  />
+                </div>
+
+                <Button
+                  size="sm"
+                  variant={event.registered ? "outline" : "default"}
+                  className="w-full"
+                  onClick={() => setSelectedEvent(event)}
+                >
+                  Xem thông tin chi tiết
+                </Button>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+
+      {filtered.length === 0 && (
+        <div className="text-center py-12 text-muted-foreground">
+          <Calendar className="w-10 h-10 mx-auto mb-3 opacity-40" />
+          <p className="text-sm">Không có sự kiện nào</p>
+        </div>
+      )}
+
+      {/* Event Detail Dialog */}
+      <Dialog open={!!selectedEvent} onOpenChange={() => setSelectedEvent(null)}>
+        <DialogContent className="max-w-lg">
+          {selectedEvent && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-lg">{selectedEvent.title}</DialogTitle>
+              </DialogHeader>
+
+              {/* Event image placeholder */}
+              <div className="w-full h-40 rounded-lg gradient-primary flex items-center justify-center">
+                <Calendar className="w-12 h-12 text-primary-foreground/60" />
+              </div>
+
+              <div className="space-y-3 mt-2">
+                <p className="text-sm text-foreground">{selectedEvent.description}</p>
+
+                <div className="space-y-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4" />
+                    {new Date(selectedEvent.date).toLocaleDateString("vi-VN", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4" /> {selectedEvent.location}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Users className="w-4 h-4" /> {selectedEvent.currentParticipants}/{selectedEvent.maxParticipants} người đã đăng ký
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="text-muted-foreground">Loại:</span>
+                  <span className="font-medium text-foreground">{selectedEvent.category}</span>
+                  <span className="text-muted-foreground">·</span>
+                  <span className="font-bold text-primary">+{selectedEvent.points} điểm</span>
+                </div>
+
+                {checkScheduleConflict(selectedEvent) && !selectedEvent.registered && (
+                  <div className="flex items-center gap-2 p-2.5 rounded-lg bg-warning/10 border border-warning/20">
+                    <AlertTriangle className="w-4 h-4 text-warning shrink-0" />
+                    <p className="text-xs text-warning font-medium">{checkScheduleConflict(selectedEvent)}</p>
+                  </div>
+                )}
+              </div>
+
+              <div className="mt-4">
+                {selectedEvent.registered ? (
+                  <div className="space-y-2">
+                    <Button variant="secondary" disabled className="w-full">
+                      ✓ Đã đăng ký
+                    </Button>
+                    <Button variant="outline" size="sm" className="w-full gap-1.5" onClick={() => window.open("https://forms.gle/example", "_blank")}>
+                      <ExternalLink className="w-3.5 h-3.5" /> Mở form đăng ký gốc
+                    </Button>
+                  </div>
+                ) : (
+                  <Button className="w-full" onClick={() => handleRegister(selectedEvent.id)}>
+                    Đăng ký tham gia
+                  </Button>
+                )}
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+📄 src/pages/ProofsPage.tsx
+import { useState, useRef } from "react";
+import { mockProofs, ActivityProof } from "@/lib/mock-data";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { FileText, Plus, Clock, CheckCircle, XCircle, Upload, ImageIcon, X } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+const statusConfig = {
+  pending: { label: "Chờ duyệt", icon: Clock, color: "text-warning bg-warning/10" },
+  approved: { label: "Đã duyệt", icon: CheckCircle, color: "text-success bg-success/10" },
+  rejected: { label: "Từ chối", icon: XCircle, color: "text-destructive bg-destructive/10" },
+};
+
+export default function ProofsPage() {
+  const [showForm, setShowForm] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
+  const myProofs = mockProofs.filter((p) => p.studentId === "2121115001");
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newFiles = Array.from(e.target.files);
+      setUploadedFiles((prev) => [...prev, ...newFiles]);
+    }
+  };
+
+  const removeFile = (index: number) => {
+    setUploadedFiles((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowForm(false);
+    setUploadedFiles([]);
+    toast({ title: "Nộp minh chứng thành công!", description: "Minh chứng đang chờ phê duyệt." });
+  };
+
+  return (
+    <div className="space-y-6 animate-fade-in max-w-3xl">
+      <div className="flex items-center justify-between">
+        <div>
+         <h2 className="text-2xl font-bold text-foreground">Minh chứng hoạt động ngoài trường</h2>
+          <p className="text-sm text-muted-foreground mt-1">Nộp và theo dõi minh chứng các hoạt động bên ngoài trường (tình nguyện, cộng đồng, kỹ năng...)</p>
+        </div>
+        <Button size="sm" onClick={() => setShowForm(!showForm)}>
+          <Plus className="w-4 h-4 mr-1" /> Nộp mới
+        </Button>
+      </div>
+
+      {showForm && (
+        <Card className="shadow-card border-primary/20">
+          <CardHeader>
+            <CardTitle className="text-base">Nộp minh chứng mới</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Tên hoạt động</label>
+                <Input placeholder="VD: Tình nguyện dạy kèm" className="h-10" />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Loại hoạt động</label>
+                <Input placeholder="VD: Tình nguyện, Học thuật, Thể thao..." className="h-10" />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Mô tả chi tiết</label>
+                <Textarea placeholder="Mô tả chi tiết hoạt động đã tham gia..." rows={3} />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Ảnh/File minh chứng</label>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*,.pdf,.doc,.docx"
+                  multiple
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  className="border-2 border-dashed border-border rounded-lg p-6 text-center cursor-pointer hover:border-primary/40 hover:bg-primary/5 transition-colors"
+                >
+                  <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
+                  <p className="text-sm text-muted-foreground">Nhấn để chọn hoặc kéo thả file</p>
+                  <p className="text-xs text-muted-foreground mt-1">Hỗ trợ: JPG, PNG, PDF, DOC (tối đa 10MB)</p>
+                </div>
+                {uploadedFiles.length > 0 && (
+                  <div className="mt-3 space-y-2">
+                    {uploadedFiles.map((file, index) => (
+                      <div key={index} className="flex items-center gap-2 p-2 bg-secondary rounded-lg text-sm">
+                        <ImageIcon className="w-4 h-4 text-muted-foreground shrink-0" />
+                        <span className="flex-1 truncate text-foreground">{file.name}</span>
+                        <span className="text-xs text-muted-foreground">{(file.size / 1024).toFixed(0)}KB</span>
+                        <button type="button" onClick={() => removeFile(index)} className="text-muted-foreground hover:text-destructive">
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="flex gap-2">
+                <Button type="submit" size="sm">Nộp minh chứng</Button>
+                <Button type="button" variant="secondary" size="sm" onClick={() => setShowForm(false)}>Hủy</Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      )}
+
+      <div className="space-y-3">
+        {myProofs.map((proof) => {
+          const status = statusConfig[proof.status];
+          return (
+            <Card key={proof.id} className="shadow-card">
+              <CardContent className="p-4 flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
+                  <FileText className="w-5 h-5 text-muted-foreground" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <p className="text-sm font-medium text-foreground">{proof.activityName}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{proof.proofDescription}</p>
+                    </div>
+                    <span className={`text-xs font-medium px-2.5 py-1 rounded-full shrink-0 flex items-center gap-1 ${status.color}`}>
+                      <status.icon className="w-3 h-3" /> {status.label}
+                    </span>
+                  </div>
+                  <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
+                    <span>{proof.category}</span>
+                    <span>+{proof.points} điểm</span>
+                    <span>{new Date(proof.submittedDate).toLocaleDateString("vi-VN")}</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
+        {myProofs.length === 0 && (
+          <div className="text-center py-12 text-muted-foreground">
+            <FileText className="w-10 h-10 mx-auto mb-3 opacity-40" />
+            <p className="text-sm">Chưa có minh chứng nào</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+📄 src/pages/AppealsPage.tsx
+import { useState, useRef } from "react";
+import { mockProofs, mockAppeals, Appeal } from "@/lib/mock-data";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { AlertTriangle, Clock, CheckCircle, XCircle, MessageSquareWarning, FileText, Upload, ImageIcon, X } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+const appealStatusConfig = {
+  pending: { label: "Đang xử lý", icon: Clock, color: "text-warning bg-warning/10 border-warning/30" },
+  resolved_approved: { label: "Đã chấp nhận", icon: CheckCircle, color: "text-success bg-success/10 border-success/30" },
+  resolved_rejected: { label: "Đã từ chối", icon: XCircle, color: "text-destructive bg-destructive/10 border-destructive/30" },
+};
+
+export default function AppealsPage() {
+  const [appeals, setAppeals] = useState<Appeal[]>(mockAppeals);
+  const [descriptions, setDescriptions] = useState<Record<string, string>>({});
+  const [uploadedFiles, setUploadedFiles] = useState<Record<string, File[]>>({});
+  const fileInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
+  const { toast } = useToast();
+
+  const rejectedProofs = mockProofs.filter(
+    (p) => p.studentId === "2121115001" && p.status === "rejected"
+  );
+
+  const myAppeals = appeals.filter((a) => a.studentId === "2121115001");
+  const hasAppeal = (proofId: string) => myAppeals.some((a) => a.proofId === proofId);
+
+  const handleFileChange = (proofId: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newFiles = Array.from(e.target.files);
+      setUploadedFiles((prev) => ({
+        ...prev,
+        [proofId]: [...(prev[proofId] || []), ...newFiles],
+      }));
+    }
+  };
+
+  const removeFile = (proofId: string, index: number) => {
+    setUploadedFiles((prev) => ({
+      ...prev,
+      [proofId]: (prev[proofId] || []).filter((_, i) => i !== index),
+    }));
+  };
+
+  const handleSubmitAppeal = (proofId: string) => {
+    const proof = rejectedProofs.find((p) => p.id === proofId);
+    const files = uploadedFiles[proofId];
+    const desc = descriptions[proofId]?.trim();
+
+    if (!proof || !desc || !files?.length) {
+      toast({ title: "Vui lòng điền mô tả và tải lên minh chứng", variant: "destructive" });
+      return;
+    }
+
+    const newAppeal: Appeal = {
+      id: `a-${Date.now()}`,
+      proofId,
+      studentId: "2121115001",
+      activityName: proof.activityName,
+      category: proof.category,
+      rejectionReason: proof.rejectionReason || "",
+      appealContent: desc,
+      appealDescription: desc,
+      appealFiles: files.map(f => f.name),
+      submittedDate: new Date().toISOString().split("T")[0],
+      status: "pending",
+    };
+
+    setAppeals((prev) => [...prev, newAppeal]);
+    setUploadedFiles((prev) => ({ ...prev, [proofId]: [] }));
+    setDescriptions((prev) => ({ ...prev, [proofId]: "" }));
+    toast({ title: "Gửi khiếu nại thành công!", description: "Minh chứng bổ sung đang chờ xử lý." });
+  };
+
+  const unappealedProofs = rejectedProofs.filter((p) => !hasAppeal(p.id));
+
+  return (
+    <div className="space-y-8 animate-fade-in max-w-3xl">
+      <div>
+        <h2 className="text-2xl font-bold text-foreground">Khiếu nại</h2>
+        <p className="text-sm text-muted-foreground mt-1">
+          Nộp minh chứng bổ sung đối với hoạt động bị từ chối
+        </p>
+      </div>
+
+      {unappealedProofs.length > 0 && (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold text-foreground">Minh chứng bị từ chối</h3>
+          {unappealedProofs.map((proof) => {
+            const files = uploadedFiles[proof.id] || [];
+            const desc = descriptions[proof.id] || "";
+            return (
+              <Card key={proof.id} className="border-destructive/20 bg-destructive/5">
+                <CardContent className="p-5 space-y-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <FileText className="w-4 h-4 text-muted-foreground" />
+                        <span className="text-sm font-medium text-foreground">{proof.activityName}</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground">{proof.category} • +{proof.points}đ</p>
+                    </div>
+                    <span className="text-xs font-medium px-3 py-1 rounded-full bg-destructive/10 text-destructive border border-destructive/20">
+                      Bị từ chối
+                    </span>
+                  </div>
+
+                  {proof.rejectionReason && (
+                    <div className="bg-destructive/10 rounded-lg p-3 border border-destructive/15">
+                      <p className="text-xs font-medium text-destructive mb-1">Lý do từ chối:</p>
+                      <p className="text-sm text-foreground">{proof.rejectionReason}</p>
+                    </div>
+                  )}
+
+                  {/* Description */}
+                  <div>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">Mô tả chi tiết</label>
+                    <Textarea
+                      placeholder="Mô tả chi tiết lý do khiếu nại và nội dung bổ sung..."
+                      value={desc}
+                      onChange={(e) => setDescriptions(prev => ({ ...prev, [proof.id]: e.target.value }))}
+                      rows={3}
+                    />
+                  </div>
+
+                  {/* File upload area */}
+                  <div>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">File minh chứng</label>
+                    <input
+                      ref={(el) => { fileInputRefs.current[proof.id] = el; }}
+                      type="file"
+                      accept="image/*,.pdf,.doc,.docx"
+                      multiple
+                      onChange={(e) => handleFileChange(proof.id, e)}
+                      className="hidden"
+                    />
+                    <div
+                      onClick={() => fileInputRefs.current[proof.id]?.click()}
+                      className="border-2 border-dashed border-border rounded-lg p-4 text-center cursor-pointer hover:border-primary/40 hover:bg-primary/5 transition-colors"
+                    >
+                      <Upload className="w-6 h-6 mx-auto mb-1.5 text-muted-foreground" />
+                      <p className="text-sm text-muted-foreground">Nhấn để chọn hoặc kéo thả file</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">JPG, PNG, PDF, DOC (tối đa 10MB)</p>
+                    </div>
+                    {files.length > 0 && (
+                      <div className="mt-2 space-y-1.5">
+                        {files.map((file, index) => (
+                          <div key={index} className="flex items-center gap-2 p-2 bg-secondary rounded-lg text-sm">
+                            <ImageIcon className="w-4 h-4 text-muted-foreground shrink-0" />
+                            <span className="flex-1 truncate text-foreground">{file.name}</span>
+                            <span className="text-xs text-muted-foreground">{(file.size / 1024).toFixed(0)}KB</span>
+                            <button type="button" onClick={() => removeFile(proof.id, index)} className="text-muted-foreground hover:text-destructive">
+                              <X className="w-4 h-4" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <Button size="sm" variant="outline" onClick={() => handleSubmitAppeal(proof.id)} className="gap-1.5">
+                    <MessageSquareWarning className="w-4 h-4" />
+                    Gửi khiếu nại
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      )}
+
+      {unappealedProofs.length === 0 && myAppeals.length === 0 && (
+        <div className="text-center py-12 text-muted-foreground">
+          <AlertTriangle className="w-10 h-10 mx-auto mb-3 opacity-40" />
+          <p className="text-sm">Không có minh chứng bị từ chối</p>
+        </div>
+      )}
+
+      {myAppeals.length > 0 && (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold text-foreground">Khiếu nại đã gửi</h3>
+          {myAppeals.map((appeal) => {
+            const status = appealStatusConfig[appeal.status];
+            return (
+              <Card key={appeal.id} className="shadow-card">
+                <CardContent className="p-5 space-y-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">{appeal.activityName}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">Lý do từ chối: {appeal.rejectionReason}</p>
+                    </div>
+                    <span className={`text-xs font-medium px-3 py-1 rounded-full flex items-center gap-1 border ${status.color}`}>
+                      <status.icon className="w-3 h-3" />
+                      {status.label}
+                    </span>
+                  </div>
+                  <div className="bg-secondary rounded-lg p-3 space-y-2">
+                    <div>
+                      <p className="text-xs text-muted-foreground mb-1">Mô tả chi tiết:</p>
+                      <p className="text-sm text-foreground">{appeal.appealDescription}</p>
+                    </div>
+                    {appeal.appealFiles.length > 0 && (
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">File minh chứng:</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {appeal.appealFiles.map((f, i) => (
+                            <span key={i} className="inline-flex items-center gap-1 text-xs bg-background px-2 py-1 rounded-md border border-border">
+                              <FileText className="w-3 h-3" /> {f}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Ngày gửi: {new Date(appeal.submittedDate).toLocaleDateString("vi-VN")}
+                  </p>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+📄 src/pages/SchedulePage.tsx
+import { useState, useMemo } from "react";
+import { mockEvents } from "@/lib/mock-data";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ChevronLeft, ChevronRight, Printer } from "lucide-react";
+import { format, startOfWeek, addDays, addWeeks, subWeeks, differenceInWeeks } from "date-fns";
+
+interface ClassBlock {
+  id: string;
+  subject: string;
+  code: string;
+  group: string;
+  room: string;
+  teacher: string;
+  dayOfWeek: number;
+  startPeriod: number;
+  endPeriod: number;
+  type: "class" | "event";
+  time?: string;
+}
+
+const mockClasses: ClassBlock[] = [
+  { id: "c1", subject: "Lập trình cho phân tích dữ liệu và tính toán khoa học", code: "TIN314", group: "TIN314(2526-2)GD1.01", room: "A405-Nhà A 405", teacher: "Trần Công Minh", dayOfWeek: 3, startPeriod: 1, endPeriod: 3, type: "class" },
+  { id: "c2", subject: "Ngoại ngữ 4 (Tiếng Pháp)", code: "TPH232", group: "TPH232(2526-2)GD1+2.BS1", room: "B402-Nhà B 402", teacher: "Ngô Lan Anh", dayOfWeek: 4, startPeriod: 1, endPeriod: 3, type: "class" },
+  { id: "c3", subject: "Giao dịch thương mại quốc tế", code: "TMA302", group: "TMA302(2526-2)GD1.03", room: "E101-Nhà E 101", teacher: "", dayOfWeek: 5, startPeriod: 1, endPeriod: 3, type: "class" },
+  { id: "c4", subject: "Giao dịch thương mại quốc tế", code: "TMA302", group: "TMA302(2526-2)GD1.03", room: "E101-Nhà E 101", teacher: "", dayOfWeek: 2, startPeriod: 4, endPeriod: 6, type: "class" },
+  { id: "c5", subject: "Lập trình cho phân tích dữ liệu và tính toán khoa học", code: "TIN314", group: "TIN314(2526-2)GD1.01", room: "A405-Nhà A 405", teacher: "Trần Công Minh", dayOfWeek: 5, startPeriod: 4, endPeriod: 6, type: "class" },
+  { id: "c6", subject: "Ngoại ngữ 4 (Tiếng Pháp)", code: "TPH232", group: "TPH232(2526-2)GD1+2.BS1", room: "B402-Nhà B 402", teacher: "Ngô Lan Anh", dayOfWeek: 6, startPeriod: 4, endPeriod: 6, type: "class" },
+  { id: "c7", subject: "Mô hình chuỗi thời gian trong kinh tế và kinh doanh", code: "TOA206", group: "TOA206(2526-2)GD1.02", room: "E201-Nhà E 201", teacher: "Phùng Duy Quang", dayOfWeek: 4, startPeriod: 7, endPeriod: 9, type: "class" },
+  { id: "c8", subject: "Kinh tế kinh doanh", code: "KTE312", group: "KTE312(2526-2)GD1.04", room: "E201-Nhà E 201", teacher: "Vũ Thành Toàn", dayOfWeek: 6, startPeriod: 7, endPeriod: 9, type: "class" },
+  { id: "c9", subject: "Kinh tế kinh doanh", code: "KTE312", group: "KTE312(2526-2)GD1.04", room: "E201-Nhà E 201", teacher: "Vũ Thành Toàn", dayOfWeek: 3, startPeriod: 10, endPeriod: 12, type: "class" },
+  { id: "c10", subject: "Mô hình chuỗi thời gian trong kinh tế và kinh doanh", code: "TOA206", group: "TOA206(2526-2)GD1.02", room: "E201-Nhà E 201", teacher: "Phùng Duy Quang", dayOfWeek: 6, startPeriod: 10, endPeriod: 12, type: "class" },
+];
+
+const periodTimeRanges: { start: string; end: string }[] = [
+  { start: "6:45", end: "7:30" },
+  { start: "7:30", end: "8:15" },
+  { start: "8:15", end: "9:00" },
+  { start: "9:20", end: "10:05" },
+  { start: "10:05", end: "10:50" },
+  { start: "10:50", end: "11:45" },
+  { start: "12:15", end: "13:00" },
+  { start: "13:00", end: "13:45" },
+  { start: "13:45", end: "14:45" },
+  { start: "14:50", end: "15:35" },
+  { start: "15:35", end: "16:20" },
+  { start: "16:20", end: "17:15" },
+  { start: "17:30", end: "18:15" },
+  { start: "18:15", end: "19:00" },
+  { start: "19:00", end: "19:45" },
+];
+
+function getBlockTimeRange(startPeriod: number, endPeriod: number) {
+  return {
+    start: periodTimeRanges[startPeriod - 1]?.start || "",
+    end: periodTimeRanges[endPeriod - 1]?.end || "",
+  };
+}
+
+const semesters = [
+  { value: "2526-2", label: "Học kỳ 2 - Năm học 2025 - 2026" },
+  { value: "2526-1", label: "Học kỳ 1 - Năm học 2025 - 2026" },
+  { value: "2425-2", label: "Học kỳ 2 - Năm học 2024 - 2025" },
+];
+
+const semesterStartDates: Record<string, Date> = {
+  "2526-2": new Date(2026, 0, 12),
+  "2526-1": new Date(2025, 7, 18),
+  "2425-2": new Date(2025, 0, 13),
+};
+
+const dayNames = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ Nhật"];
+const dayNumbers = [2, 3, 4, 5, 6, 7, 8];
+
+export default function SchedulePage() {
+  const [semester, setSemester] = useState("2526-2");
+  const [currentWeekStart, setCurrentWeekStart] = useState(() => {
+    const now = new Date();
+    return startOfWeek(now, { weekStartsOn: 1 });
+  });
+
+  const semesterStart = semesterStartDates[semester];
+  const weekNumber = useMemo(() => {
+    const diff = differenceInWeeks(currentWeekStart, startOfWeek(semesterStart, { weekStartsOn: 1 }));
+    return Math.max(1, diff + 1);
+  }, [currentWeekStart, semesterStart]);
+
+  const weekEnd = addDays(currentWeekStart, 6);
+  const weekLabel = `Tuần ${weekNumber} [từ ngày ${format(currentWeekStart, "dd/MM/yyyy")} đến ngày ${format(weekEnd, "dd/MM/yyyy")}]`;
+
+  const weekOptions = useMemo(() => {
+    const semStart = startOfWeek(semesterStart, { weekStartsOn: 1 });
+    return Array.from({ length: 20 }, (_, i) => {
+      const ws = addWeeks(semStart, i);
+      const we = addDays(ws, 6);
+      return {
+        value: ws.toISOString(),
+        label: `Tuần ${i + 1} [từ ngày ${format(ws, "dd/MM/yyyy")} đến ngày ${format(we, "dd/MM/yyyy")}]`,
+      };
+    });
+  }, [semesterStart]);
+
+  const dayDates = useMemo(() => {
+    return dayNumbers.map((_, i) => format(addDays(currentWeekStart, i), "dd/MM"));
+  }, [currentWeekStart]);
+
+  // Convert registered events into schedule blocks for the current week
+  const eventBlocks: ClassBlock[] = useMemo(() => {
+    const registered = mockEvents.filter((e) => e.registered);
+    return registered
+      .filter((ev) => {
+        const d = new Date(ev.date);
+        return d >= currentWeekStart && d <= weekEnd;
+      })
+      .map((ev) => {
+        const d = new Date(ev.date);
+        let dow = d.getDay();
+        const mappedDay = dow === 0 ? 8 : dow + 1;
+        return {
+          id: `ev-${ev.id}`,
+          subject: ev.title,
+          code: "",
+          group: "",
+          room: ev.location,
+          teacher: "",
+          dayOfWeek: mappedDay,
+          startPeriod: 13,
+          endPeriod: 13,
+          type: "event" as const,
+          time: ev.startTime && ev.endTime ? `${ev.startTime} - ${ev.endTime}` : "",
+        };
+      });
+  }, [currentWeekStart, weekEnd]);
+
+  const allBlocks = [...mockClasses, ...eventBlocks];
+
+  const blockMap = useMemo(() => {
+    const map = new Map<string, ClassBlock>();
+    const occupied = new Set<string>();
+    allBlocks.forEach((block) => {
+      const key = `${block.dayOfWeek}-${block.startPeriod}`;
+      map.set(key, block);
+      for (let p = block.startPeriod; p <= block.endPeriod; p++) {
+        occupied.add(`${block.dayOfWeek}-${p}`);
+      }
+    });
+    return { map, occupied };
+  }, [allBlocks]);
+
+  const maxPeriod = Math.max(12, ...allBlocks.map((b) => b.endPeriod));
+
+  return (
+    <div className="space-y-4 animate-fade-in">
+      <h2 className="text-2xl font-bold text-foreground">⚙ THỜI KHÓA BIỂU DẠNG TUẦN</h2>
+
+      <div className="flex flex-wrap items-center gap-3">
+        <Select value={semester} onValueChange={(v) => {
+          setSemester(v);
+          setCurrentWeekStart(startOfWeek(semesterStartDates[v], { weekStartsOn: 1 }));
+        }}>
+          <SelectTrigger className="w-[280px]"><SelectValue /></SelectTrigger>
+          <SelectContent>
+            {semesters.map((s) => (<SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>))}
+          </SelectContent>
+        </Select>
+        <Select value="personal">
+          <SelectTrigger className="w-[220px]"><SelectValue /></SelectTrigger>
+          <SelectContent><SelectItem value="personal">Thời khóa biểu cá nhân</SelectItem></SelectContent>
+        </Select>
+      </div>
+
+      <div className="flex items-center gap-3">
+        <Select value={currentWeekStart.toISOString()} onValueChange={(v) => setCurrentWeekStart(new Date(v))}>
+          <SelectTrigger className="flex-1 max-w-[500px]"><SelectValue>{weekLabel}</SelectValue></SelectTrigger>
+          <SelectContent>
+            {weekOptions.map((w) => (<SelectItem key={w.value} value={w.value}>{w.label}</SelectItem>))}
+          </SelectContent>
+        </Select>
+        <Button variant="outline" size="icon" className="print:hidden" onClick={() => window.print()}>
+          <Printer className="h-4 w-4" />
+        </Button>
+      </div>
+
+      <div className="flex items-center gap-4 text-xs">
+        <span className="flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded-full bg-info border border-info/60" /> Lịch học
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded-full bg-success border border-success/60" /> Sự kiện đã ĐK
+        </span>
+      </div>
+
+      <Card className="shadow-card overflow-x-auto">
+        <div className="min-w-[900px]">
+          <table className="w-full border-collapse text-xs">
+            <thead>
+              <tr>
+                <th className="border border-border bg-destructive/10 p-1 w-10">
+                  <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={() => setCurrentWeekStart((w) => subWeeks(w, 1))}>
+                    <ChevronLeft className="h-4 w-4" />
+                  </Button>
+                </th>
+                {dayNames.map((name, i) => (
+                  <th key={name} className="border border-border bg-destructive/10 p-2 text-destructive font-bold min-w-[115px]">
+                    <div>{name}</div>
+                    <div className="text-[10px] font-normal text-muted-foreground">({dayDates[i]})</div>
+                  </th>
+                ))}
+                <th className="border border-border bg-destructive/10 p-1 w-10">
+                  <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={() => setCurrentWeekStart((w) => addWeeks(w, 1))}>
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from({ length: maxPeriod }, (_, i) => i + 1).map((period) => (
+                <tr key={period}>
+                  <td className="border border-border bg-destructive/10 p-1.5 text-center font-bold text-destructive text-[11px] sticky left-0 z-10">
+                    Tiết {period}
+                  </td>
+                  {dayNumbers.map((day) => {
+                    const key = `${day}-${period}`;
+                    const block = blockMap.map.get(key);
+                    if (!block && blockMap.occupied.has(key)) return null;
+                    if (block) {
+                      const span = block.endPeriod - block.startPeriod + 1;
+                      const isEvent = block.type === "event";
+                      const timeRange = getBlockTimeRange(block.startPeriod, block.endPeriod);
+                      return (
+                        <td key={key} rowSpan={span}
+                          className={`border border-border p-2 align-top transition-colors ${
+                            isEvent
+                              ? "bg-success/10 hover:bg-success/20 border-l-2 border-l-success"
+                              : "bg-info/10 hover:bg-info/15 border-l-2 border-l-info"
+                          }`}
+                        >
+                          <div className="space-y-0.5">
+                            <p className={`font-bold leading-tight text-[11px] ${isEvent ? "text-success" : "text-foreground"}`}>
+                              {block.subject}
+                              {block.code && <span className="text-muted-foreground font-normal"> ({block.code})</span>}
+                            </p>
+                            {block.group && (
+                              <p className="text-muted-foreground text-[10px] leading-tight">
+                                <span className="font-semibold">{isEvent ? "" : "Nhóm: "}</span>{block.group}
+                              </p>
+                            )}
+                            <p className="text-muted-foreground text-[10px]">
+                              <span className="font-semibold">{isEvent ? "📍" : "Phòng:"}</span> {block.room}
+                            </p>
+                            {block.teacher && (
+                              <p className="text-muted-foreground text-[10px]">
+                                <span className="font-semibold">{isEvent ? "" : "GV: "}</span>{block.teacher}
+                              </p>
+                            )}
+                            <p className="text-muted-foreground text-[10px]">
+                              🕐 {isEvent && block.time ? block.time : `${timeRange.start} → ${timeRange.end}`}
+                            </p>
+                          </div>
+                        </td>
+                      );
+                    }
+                    return <td key={key} className="border border-border p-1.5" />;
+                  })}
+                  <td className="border border-border bg-destructive/10 p-1.5 text-center font-bold text-destructive text-[11px]">
+                    {periodTimeRanges[period - 1]?.start || ""}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </div>
+  );
+}
+📄 src/pages/RankingPage.tsx
+import { useState } from "react";
+import { mockClassRanking, getGradeColor } from "@/lib/mock-data";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Trophy, Shield, Eye, EyeOff } from "lucide-react";
+
+const scopes = ["Lớp", "Khoa", "Trường"];
+
+export default function RankingPage() {
+  const [scope, setScope] = useState("Lớp");
+  const [showDetails, setShowDetails] = useState(true);
+
+  return (
+    <div className="space-y-6 animate-fade-in max-w-2xl">
+      <div>
+        <h2 className="text-2xl font-bold text-foreground">Xếp hạng điểm rèn luyện</h2>
+        <p className="text-sm text-muted-foreground mt-1">Bảng xếp hạng ẩn danh — bảo vệ quyền riêng tư sinh viên</p>
+      </div>
+
+      {/* Privacy notice */}
+      <div className="flex items-start gap-3 p-4 rounded-lg bg-info/5 border border-info/20">
+        <Shield className="w-5 h-5 text-info mt-0.5 shrink-0" />
+        <div className="text-sm text-foreground">
+          <p className="font-medium">Bảo vệ quyền riêng tư</p>
+          <p className="text-muted-foreground text-xs mt-1">
+            Bảng xếp hạng được ẩn danh hoàn toàn. Bạn chỉ có thể thấy vị trí của chính mình.
+          </p>
+        </div>
+      </div>
+
+      {/* Scope */}
+      <div className="flex gap-2">
+        {scopes.map((s) => (
+          <button
+            key={s}
+            onClick={() => setScope(s)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              scope === s ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:bg-border"
+            }`}
+          >
+            {s}
+          </button>
+        ))}
+        <div className="flex-1" />
+        <button
+          onClick={() => setShowDetails(!showDetails)}
+          className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors px-3"
+        >
+          {showDetails ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+          {showDetails ? "Ẩn điểm" : "Hiện điểm"}
+        </button>
+      </div>
+
+      {/* Ranking table */}
+      <Card className="shadow-card">
+        <CardHeader>
+          <CardTitle className="text-base font-semibold flex items-center gap-2">
+            <Trophy className="w-4 h-4 text-ftu-gold" />
+            Xếp hạng theo {scope} — {scope === "Lớp" ? "Anh 1 - KTQT61" : scope === "Khoa" ? "Khoa KTQT" : "Toàn trường"}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-1">
+            {mockClassRanking.map((entry) => (
+              <div
+                key={entry.rank}
+                className={`flex items-center gap-4 p-3 rounded-lg transition-colors ${
+                  entry.isCurrentUser
+                    ? "bg-primary/5 border border-primary/20 ring-1 ring-primary/10"
+                    : "hover:bg-secondary/50"
+                }`}
+              >
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0 ${
+                  entry.rank === 1 ? "gradient-gold text-primary-foreground" :
+                  entry.rank === 2 ? "bg-secondary text-foreground" :
+                  entry.rank === 3 ? "bg-secondary text-foreground" :
+                  "text-muted-foreground"
+                }`}>
+                  {entry.rank <= 3 ? ["🥇", "🥈", "🥉"][entry.rank - 1] : entry.rank}
+                </div>
+
+                <div className="flex-1">
+                  <span className={`text-sm font-medium ${entry.isCurrentUser ? "text-primary" : "text-foreground"}`}>
+                    {entry.isCurrentUser ? "📍 Bạn" : entry.anonymizedId}
+                  </span>
+                </div>
+
+                {showDetails && (
+                  <>
+                    <span className={`text-sm font-bold ${getGradeColor(entry.grade)}`}>
+                      {entry.grade}
+                    </span>
+                    <span className="text-sm font-mono font-bold text-foreground w-10 text-right">
+                      {entry.score}
+                    </span>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+📄 src/pages/ChangePasswordPage.tsx
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Lock } from "lucide-react";
+
+export default function ChangePasswordPage() {
+  return (
+    <div className="space-y-6 animate-fade-in max-w-lg">
+      <h2 className="text-2xl font-bold text-foreground">Đổi mật khẩu</h2>
+
+      <Card className="shadow-card">
+        <CardHeader>
+          <CardTitle className="text-base font-semibold flex items-center gap-2">
+            <Lock className="w-4 h-4 text-primary" />
+            Cập nhật mật khẩu
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <label className="text-sm font-medium text-foreground mb-1.5 block">Mật khẩu hiện tại</label>
+            <Input type="password" placeholder="Nhập mật khẩu hiện tại" className="h-10" />
+          </div>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-1.5 block">Mật khẩu mới</label>
+            <Input type="password" placeholder="Nhập mật khẩu mới" className="h-10" />
+          </div>
+          <div>
+            <label className="text-sm font-medium text-foreground mb-1.5 block">Xác nhận mật khẩu mới</label>
+            <Input type="password" placeholder="Nhập lại mật khẩu mới" className="h-10" />
+          </div>
+          <Button className="w-full">Cập nhật mật khẩu</Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+📄 src/pages/DashboardPage.tsx
+import { mockConductScore, mockEvents, getGradeColor } from "@/lib/mock-data";
+import { useAuth } from "@/contexts/AuthContext";
+import ScoreCircle from "@/components/ScoreCircle";
+import { Card, CardContent } from "@/components/ui/card";
+import { Calendar, TrendingUp, Clock, Lightbulb } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Progress } from "@/components/ui/progress";
+
+export default function DashboardPage() {
+  const { user } = useAuth();
+  const score = mockConductScore;
+
+  if (!user) return null;
+
+  const lackingCategories = score.categories.filter(c => (c.score / c.maxScore) < 0.7);
+  const suggestedEvents = mockEvents
+    .filter(e => e.status === "upcoming" && lackingCategories.some(c => c.id === e.conductCategory))
+    .slice(0, 3);
+
+  return (
+    <div className="space-y-6 animate-fade-in">
+      {/* Greeting */}
+      <div>
+        <h2 className="text-2xl font-bold text-foreground">
+          Xin chào, {user.name.split(" ").pop()} 👋
+        </h2>
+        <p className="text-sm text-muted-foreground mt-1">
+          {score.semester} · Năm {user.year}
+        </p>
+      </div>
+
+      {/* Score overview + Quick stats in same row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Score progress */}
+        <Card className="shadow-card border-l-4 border-l-primary">
+          <CardContent className="pt-5 pb-4">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-sm font-semibold text-foreground">Tiến độ điểm rèn luyện</p>
+              <span className={`text-sm font-bold ${getGradeColor(score.grade)}`}>{score.totalScore}/{score.maxScore} — {score.grade}</span>
+            </div>
+            <Progress value={(score.totalScore / score.maxScore) * 100} className="h-3" />
+            <p className="text-xs text-muted-foreground mt-2">
+              {score.totalScore >= 80 ? "✅ Bạn đang đạt mức Tốt trở lên!" : `⚠️ Cần thêm ${80 - score.totalScore} điểm để đạt loại Tốt`}
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Quick stats */}
+        <div className="grid grid-cols-2 gap-3">
+          {[
+            { label: "Sự kiện đã tham gia", value: "12", icon: Calendar, color: "text-info" },
+            { label: "Minh chứng chờ duyệt", value: "1", icon: Clock, color: "text-warning" },
+            { label: "Điểm cộng tháng này", value: "+5", icon: TrendingUp, color: "text-success" },
+            { label: "Sự kiện sắp tới", value: String(mockEvents.filter(e => e.status === "upcoming").length), icon: Calendar, color: "text-primary" },
+          ].map((stat) => (
+            <Card key={stat.label} className="shadow-card">
+              <CardContent className="pt-4 pb-3">
+                <stat.icon className={`w-4 h-4 ${stat.color} mb-1.5`} />
+                <p className="text-lg font-bold text-foreground">{stat.value}</p>
+                <p className="text-[11px] text-muted-foreground">{stat.label}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Suggested activities */}
+      {suggestedEvents.length > 0 && (
+        <Card className="shadow-card border-l-4 border-l-warning">
+          <CardContent className="pt-5 pb-4">
+            <p className="text-sm font-semibold text-foreground flex items-center gap-2 mb-3">
+              <Lightbulb className="w-4 h-4 text-warning" />
+              Gợi ý hoạt động giúp bạn đủ điểm
+            </p>
+            <div className="space-y-2">
+              {suggestedEvents.map(event => (
+                <div key={event.id} className="flex items-center gap-3 p-2.5 rounded-lg bg-warning/5 hover:bg-warning/10 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-warning/20 flex flex-col items-center justify-center text-warning shrink-0">
+                    <span className="text-xs font-bold leading-none">{new Date(event.date).getDate()}</span>
+                    <span className="text-[9px] leading-none mt-0.5">Th{new Date(event.date).getMonth() + 1}</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-foreground truncate">{event.title}</p>
+                    <p className="text-xs text-muted-foreground">{event.location} · +{event.points} điểm</p>
+                  </div>
+                  <Link to="/events" className="text-xs text-primary font-medium hover:underline shrink-0">Đăng ký →</Link>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}
+📄 src/pages/NotFound.tsx
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+
+const NotFound = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+  }, [location.pathname]);
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-muted">
+      <div className="text-center">
+        <h1 className="mb-4 text-4xl font-bold">404</h1>
+        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
+        <a href="/" className="text-primary underline hover:text-primary/90">
+          Return to Home
+        </a>
+      </div>
+    </div>
+  );
+};
+
+export default NotFound;
+📄 src/pages/Index.tsx
+// Update this page (the content is just a fallback if you fail to update the page)
+
+const Index = () => {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background">
+      <div className="text-center">
+        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
+        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+      </div>
+    </div>
+  );
+};
+
+export default Index;
+📄 src/pages/dept/DeptEventsPage.tsx
+import { useState } from "react";
+import { mockEvents, mockConductScore, Event } from "@/lib/mock-data";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Plus, Edit, Trash2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+export default function DeptEventsPage() {
+  const [showForm, setShowForm] = useState(false);
+  const { toast } = useToast();
+
+  const handleCreate = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowForm(false);
+    toast({ title: "Tạo hoạt động thành công!" });
+  };
+
+  return (
+    <div className="space-y-6 animate-fade-in">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-foreground">Quản lý hoạt động</h2>
+          <p className="text-sm text-muted-foreground mt-1">Tạo và quản lý các hoạt động tính điểm rèn luyện</p>
+        </div>
+        <Button size="sm" onClick={() => setShowForm(!showForm)}>
+          <Plus className="w-4 h-4 mr-1" /> Tạo hoạt động
+        </Button>
+      </div>
+
+      {showForm && (
+        <Card className="shadow-card border-primary/20">
+          <CardHeader><CardTitle className="text-base">Tạo hoạt động mới</CardTitle></CardHeader>
+          <CardContent>
+            <form onSubmit={handleCreate} className="grid gap-4 sm:grid-cols-2">
+              <div className="sm:col-span-2">
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Tên hoạt động</label>
+                <Input placeholder="VD: Ngày hội Hiến máu 2025" className="h-10" />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Thời gian</label>
+                <Input type="date" className="h-10" />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Địa điểm</label>
+                <Input placeholder="VD: Sảnh A" className="h-10" />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Điểm rèn luyện</label>
+                <Input type="number" placeholder="5" className="h-10" />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Số lượng sinh viên</label>
+                <Input type="number" placeholder="200" className="h-10" />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Mục điểm rèn luyện</label>
+                <Select>
+                  <SelectTrigger className="h-10"><SelectValue placeholder="Chọn mục" /></SelectTrigger>
+                  <SelectContent>
+                    {mockConductScore.categories.map(c => (
+                      <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Danh mục</label>
+                <Select>
+                  <SelectTrigger className="h-10"><SelectValue placeholder="Chọn danh mục" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Tình nguyện">Tình nguyện</SelectItem>
+                    <SelectItem value="Học thuật">Học thuật</SelectItem>
+                    <SelectItem value="Thể thao">Thể thao</SelectItem>
+                    <SelectItem value="Văn nghệ">Văn nghệ</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="sm:col-span-2">
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Mô tả</label>
+                <Textarea placeholder="Mô tả hoạt động..." rows={3} />
+              </div>
+              <div className="sm:col-span-2 flex gap-2">
+                <Button type="submit" size="sm">Tạo hoạt động</Button>
+                <Button type="button" variant="secondary" size="sm" onClick={() => setShowForm(false)}>Hủy</Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      )}
+
+      <div className="space-y-3">
+        {mockEvents.map((event) => (
+          <Card key={event.id} className="shadow-card">
+            <CardContent className="p-4 flex items-center gap-4">
+              <div className="w-11 h-11 rounded-lg gradient-primary flex flex-col items-center justify-center text-primary-foreground shrink-0">
+                <span className="text-xs font-bold leading-none">{new Date(event.date).getDate()}</span>
+                <span className="text-[9px] leading-none mt-0.5">Th{new Date(event.date).getMonth() + 1}</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-foreground truncate">{event.title}</p>
+                <p className="text-xs text-muted-foreground">{event.location} · {event.currentParticipants}/{event.maxParticipants} · +{event.points} điểm</p>
+              </div>
+              <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                event.status === "upcoming" ? "bg-primary/10 text-primary" : "bg-secondary text-muted-foreground"
+              }`}>
+                {event.status === "upcoming" ? "Sắp tới" : "Đã xong"}
+              </span>
+              <div className="flex gap-1">
+                <button className="p-1.5 rounded-md hover:bg-secondary text-muted-foreground"><Edit className="w-3.5 h-3.5" /></button>
+                <button className="p-1.5 rounded-md hover:bg-destructive/10 text-muted-foreground hover:text-destructive"><Trash2 className="w-3.5 h-3.5" /></button>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}
+📄 src/pages/dept/DeptConfirmPage.tsx
+import { useState } from "react";
+import { mockRegisteredStudents, mockEvents } from "@/lib/mock-data";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CheckSquare, Upload, Check } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { Checkbox } from "@/components/ui/checkbox";
+
+export default function DeptConfirmPage() {
+  const [students, setStudents] = useState(mockRegisteredStudents);
+  const [selectedEvent, setSelectedEvent] = useState(mockEvents[0]?.id || "");
+  const { toast } = useToast();
+
+  const handleConfirm = (studentId: string) => {
+    setStudents(prev => prev.map(s => s.id === studentId ? { ...s, confirmed: true } : s));
+    toast({ title: "Đã xác nhận!", description: "Điểm sẽ được tự động cộng cho sinh viên." });
+  };
+
+  const handleConfirmAll = () => {
+    setStudents(prev => prev.map(s => ({ ...s, confirmed: true })));
+    toast({ title: "Đã xác nhận tất cả!", description: "Điểm đã được cộng cho tất cả sinh viên." });
+  };
+
+  const handleUploadExcel = () => {
+    toast({ title: "Upload thành công!", description: "Đã nhập danh sách từ file Excel." });
+  };
+
+  const pending = students.filter(s => !s.confirmed);
+  const confirmed = students.filter(s => s.confirmed);
+
+  return (
+    <div className="space-y-6 animate-fade-in">
+      <div>
+        <h2 className="text-2xl font-bold text-foreground">Xác nhận tham gia</h2>
+        <p className="text-sm text-muted-foreground mt-1">Tick xác nhận sinh viên đã tham gia hoạt động</p>
+      </div>
+
+      {/* Event selector */}
+      <div className="flex flex-wrap items-center gap-3">
+        <Select value={selectedEvent} onValueChange={setSelectedEvent}>
+          <SelectTrigger className="w-[320px]">
+            <SelectValue placeholder="Chọn hoạt động" />
+          </SelectTrigger>
+          <SelectContent>
+            {mockEvents.map(e => (
+              <SelectItem key={e.id} value={e.id}>{e.title}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Button variant="outline" size="sm" onClick={handleUploadExcel}>
+          <Upload className="w-4 h-4 mr-1" /> Upload Excel
+        </Button>
+        {pending.length > 0 && (
+          <Button size="sm" onClick={handleConfirmAll}>
+            <CheckSquare className="w-4 h-4 mr-1" /> Xác nhận tất cả ({pending.length})
+          </Button>
+        )}
+      </div>
+
+      {/* Pending list */}
+      {pending.length > 0 && (
+        <Card className="shadow-card">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base font-semibold">Chờ xác nhận ({pending.length})</CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border bg-secondary/50">
+                  <th className="text-left p-3 font-medium text-muted-foreground">MSSV</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground">Họ tên</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground">Lớp</th>
+                  <th className="text-right p-3 font-medium text-muted-foreground">Xác nhận</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pending.map(s => (
+                  <tr key={s.id} className="border-b border-border last:border-0 hover:bg-secondary/30">
+                    <td className="p-3 font-mono text-xs text-muted-foreground">{s.id}</td>
+                    <td className="p-3 font-medium text-foreground">{s.name}</td>
+                    <td className="p-3 text-muted-foreground">{s.className}</td>
+                    <td className="p-3 text-right">
+                      <Button size="sm" variant="outline" onClick={() => handleConfirm(s.id)}>
+                        <Check className="w-3.5 h-3.5 mr-1" /> Tick
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Confirmed list */}
+      {confirmed.length > 0 && (
+        <Card className="shadow-card">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base font-semibold text-success">Đã xác nhận ({confirmed.length})</CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border bg-secondary/50">
+                  <th className="text-left p-3 font-medium text-muted-foreground">MSSV</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground">Họ tên</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground">Lớp</th>
+                  <th className="text-right p-3 font-medium text-muted-foreground">Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody>
+                {confirmed.map(s => (
+                  <tr key={s.id} className="border-b border-border last:border-0">
+                    <td className="p-3 font-mono text-xs text-muted-foreground">{s.id}</td>
+                    <td className="p-3 font-medium text-foreground">{s.name}</td>
+                    <td className="p-3 text-muted-foreground">{s.className}</td>
+                    <td className="p-3 text-right">
+                      <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-success/10 text-success">✓ Đã cộng điểm</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}
+📄 src/pages/training/TODashboardPage.tsx
+import { useState } from "react";
+import { mockFacultyStats, mockEvents, mockConductScore } from "@/lib/mock-data";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Users, Calendar, AlertTriangle, TrendingUp, Lock, FileDown, BarChart3 } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { useToast } from "@/hooks/use-toast";
+
+export default function TODashboardPage() {
+  const { toast } = useToast();
+  const [locked, setLocked] = useState(false);
+
+  const totalStudents = mockFacultyStats.reduce((s, f) => s + f.totalStudents, 0);
+  const sufficientStudents = mockFacultyStats.reduce((s, f) => s + f.sufficientScore, 0);
+  const insufficientStudents = mockFacultyStats.reduce((s, f) => s + f.insufficientScore, 0);
+  const completionRate = Math.round((sufficientStudents / totalStudents) * 100);
+
+  const handleLock = () => {
+    setLocked(true);
+    toast({
+      title: "🔒 Đã khóa điểm học kỳ!",
+      description: "Hệ thống đã tính tổng điểm, xếp loại và sẵn sàng xuất báo cáo.",
+    });
+  };
+
+  const handleExport = () => {
+    toast({ title: "📥 Xuất báo cáo thành công!", description: "File Excel đã được tải xuống." });
+  };
+
+  return (
+    <div className="space-y-6 animate-fade-in">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-foreground">Phòng Quản lý Đào tạo</h2>
+          <p className="text-sm text-muted-foreground mt-1">Tổng quan toàn trường — HK1 2024-2025</p>
+        </div>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm" onClick={handleExport}>
+            <FileDown className="w-4 h-4 mr-1" /> Xuất báo cáo
+          </Button>
+        </div>
+      </div>
+
+      {/* Top stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { label: "Tổng sinh viên", value: totalStudents.toLocaleString(), icon: Users, color: "text-primary" },
+          { label: "Đủ điểm", value: sufficientStudents.toLocaleString(), icon: TrendingUp, color: "text-success" },
+          { label: "Thiếu điểm", value: insufficientStudents.toLocaleString(), icon: AlertTriangle, color: "text-warning" },
+          { label: "Hoạt động toàn trường", value: mockEvents.length.toString(), icon: Calendar, color: "text-info" },
+        ].map(s => (
+          <Card key={s.label} className="shadow-card">
+            <CardContent className="pt-5 pb-4">
+              <s.icon className={`w-5 h-5 ${s.color} mb-2`} />
+              <p className="text-2xl font-bold text-foreground">{s.value}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{s.label}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Progress bar */}
+      <Card className="shadow-card border-l-4 border-l-success">
+        <CardContent className="pt-5 pb-4">
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-sm font-semibold text-foreground">Tiến độ học kỳ</p>
+            <span className="text-sm font-bold text-success">{completionRate}% sinh viên đã hoàn thành</span>
+          </div>
+          <Progress value={completionRate} className="h-3" />
+        </CardContent>
+      </Card>
+
+      {/* Warning */}
+      {insufficientStudents > 0 && (
+        <Card className="shadow-card border-l-4 border-l-warning">
+          <CardContent className="pt-5 pb-4 flex items-center gap-3">
+            <AlertTriangle className="w-5 h-5 text-warning shrink-0" />
+            <div>
+              <p className="text-sm font-semibold text-foreground">Cảnh báo</p>
+              <p className="text-xs text-muted-foreground">{insufficientStudents} sinh viên chưa đủ điểm rèn luyện học kỳ này</p>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Faculty stats */}
+      <Card className="shadow-card">
+        <CardHeader>
+          <CardTitle className="text-base font-semibold flex items-center gap-2">
+            <BarChart3 className="w-4 h-4 text-primary" />
+            Thống kê theo khoa
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border bg-secondary/50">
+                  <th className="text-left p-3 font-medium text-muted-foreground">Khoa</th>
+                  <th className="text-right p-3 font-medium text-muted-foreground">Tổng SV</th>
+                  <th className="text-right p-3 font-medium text-muted-foreground">Đủ điểm</th>
+                  <th className="text-right p-3 font-medium text-muted-foreground">Thiếu</th>
+                  <th className="text-right p-3 font-medium text-muted-foreground">ĐTB</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mockFacultyStats.map(f => (
+                  <tr key={f.faculty} className="border-b border-border last:border-0 hover:bg-secondary/30">
+                    <td className="p-3 font-medium text-foreground">{f.faculty}</td>
+                    <td className="p-3 text-right text-foreground">{f.totalStudents}</td>
+                    <td className="p-3 text-right text-success font-medium">{f.sufficientScore}</td>
+                    <td className="p-3 text-right text-warning font-medium">{f.insufficientScore}</td>
+                    <td className="p-3 text-right font-bold text-foreground">{f.avgScore}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Score categories management */}
+      <Card className="shadow-card">
+        <CardHeader>
+          <CardTitle className="text-base font-semibold">Danh mục điểm rèn luyện</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {mockConductScore.categories.map(cat => (
+            <div key={cat.id} className="flex items-center justify-between p-3 rounded-lg bg-secondary/50">
+              <div>
+                <p className="text-sm font-medium text-foreground">{cat.name}</p>
+                <p className="text-xs text-muted-foreground">{cat.description}</p>
+              </div>
+              <span className="text-sm font-bold text-primary">Tối đa {cat.maxScore} điểm</span>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+
+      {/* Lock semester CTA */}
+      <Card className={`shadow-card ${locked ? "border-l-4 border-l-success" : "border-l-4 border-l-primary"}`}>
+        <CardContent className="pt-6 pb-6 text-center">
+          {locked ? (
+            <>
+              <Lock className="w-10 h-10 text-success mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-foreground mb-1">🔒 Điểm đã khóa</h3>
+              <p className="text-sm text-muted-foreground mb-4">HK1 2024-2025 đã được tổng kết. Hệ thống đã xếp loại toàn bộ sinh viên.</p>
+              <Button variant="outline" size="sm" onClick={handleExport}>
+                <FileDown className="w-4 h-4 mr-1" /> Xuất file tổng kết
+              </Button>
+            </>
+          ) : (
+            <>
+              <Lock className="w-10 h-10 text-primary mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-foreground mb-1">Khóa điểm học kỳ</h3>
+              <p className="text-sm text-muted-foreground mb-4">Sau khi khóa, hệ thống sẽ tự động tính tổng điểm, xếp loại và xuất báo cáo.</p>
+              <Button size="lg" onClick={handleLock}>
+                <Lock className="w-4 h-4 mr-2" /> Khóa điểm HK1 2024-2025
+              </Button>
+            </>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+📄 src/pages/training/TOStudentsPage.tsx
+import { useState } from "react";
+import { mockFacultyStats } from "@/lib/mock-data";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Search, Edit2, Save } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+const mockAllStudents = [
+  { id: "2121115001", name: "Nguyễn Văn An", faculty: "Khoa Kinh tế Quốc tế", className: "Anh 1 - KTQT61", score: 72, grade: "Khá" },
+  { id: "2121115002", name: "Trần Minh Châu", faculty: "Khoa Kinh tế Quốc tế", className: "Anh 1 - KTQT61", score: 92, grade: "Xuất sắc" },
+  { id: "2121115003", name: "Lê Hoàng Dũng", faculty: "Khoa QTKD", className: "Anh 2 - QTKD61", score: 73, grade: "Khá" },
+  { id: "2121115004", name: "Phạm Thu Hà", faculty: "Khoa Kinh tế Quốc tế", className: "Anh 1 - KTQT61", score: 68, grade: "Khá" },
+  { id: "2121115005", name: "Hoàng Minh Tuấn", faculty: "Khoa TCNH", className: "Anh 1 - TCNH61", score: 55, grade: "Trung bình" },
+  { id: "2121115006", name: "Vũ Thị Lan", faculty: "Khoa Luật", className: "Luật 61A", score: 88, grade: "Tốt" },
+  { id: "2121115007", name: "Đặng Quốc Bảo", faculty: "Khoa CNTT", className: "CNTT 61", score: 45, grade: "Yếu" },
+];
+
+export default function TOStudentsPage() {
+  const [search, setSearch] = useState("");
+  const [facultyFilter, setFacultyFilter] = useState("all");
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editScore, setEditScore] = useState("");
+  const { toast } = useToast();
+
+  const filtered = mockAllStudents.filter(s => {
+    const matchSearch = s.name.toLowerCase().includes(search.toLowerCase()) || s.id.includes(search);
+    const matchFaculty = facultyFilter === "all" || s.faculty === facultyFilter;
+    return matchSearch && matchFaculty;
+  });
+
+  const faculties = [...new Set(mockAllStudents.map(s => s.faculty))];
+
+  const handleSaveScore = (id: string) => {
+    setEditingId(null);
+    toast({ title: "Đã cập nhật điểm!", description: `Điểm sinh viên ${id} đã được chỉnh sửa.` });
+  };
+
+  return (
+    <div className="space-y-6 animate-fade-in">
+      <div>
+        <h2 className="text-2xl font-bold text-foreground">Quản lý điểm sinh viên</h2>
+        <p className="text-sm text-muted-foreground mt-1">Xem, duyệt và chỉnh sửa điểm rèn luyện</p>
+      </div>
+
+      <div className="flex flex-wrap gap-3">
+        <div className="relative flex-1 min-w-[200px]">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input placeholder="Tìm theo tên hoặc MSSV..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9 h-10" />
+        </div>
+        <Select value={facultyFilter} onValueChange={setFacultyFilter}>
+          <SelectTrigger className="w-[220px]"><SelectValue /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Tất cả khoa</SelectItem>
+            {faculties.map(f => <SelectItem key={f} value={f}>{f}</SelectItem>)}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <Card className="shadow-card">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border bg-secondary/50">
+                  <th className="text-left p-3 font-medium text-muted-foreground">MSSV</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground">Họ tên</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground">Khoa</th>
+                  <th className="text-left p-3 font-medium text-muted-foreground">Lớp</th>
+                  <th className="text-right p-3 font-medium text-muted-foreground">Điểm</th>
+                  <th className="text-right p-3 font-medium text-muted-foreground">Xếp loại</th>
+                  <th className="text-right p-3 font-medium text-muted-foreground">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map(s => (
+                  <tr key={s.id} className="border-b border-border last:border-0 hover:bg-secondary/30">
+                    <td className="p-3 font-mono text-xs text-muted-foreground">{s.id}</td>
+                    <td className="p-3 font-medium text-foreground">{s.name}</td>
+                    <td className="p-3 text-muted-foreground text-xs">{s.faculty}</td>
+                    <td className="p-3 text-muted-foreground">{s.className}</td>
+                    <td className="p-3 text-right">
+                      {editingId === s.id ? (
+                        <Input
+                          type="number"
+                          value={editScore}
+                          onChange={e => setEditScore(e.target.value)}
+                          className="h-8 w-16 text-right ml-auto"
+                        />
+                      ) : (
+                        <span className="font-bold text-foreground">{s.score}</span>
+                      )}
+                    </td>
+                    <td className="p-3 text-right">
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                        s.grade === "Xuất sắc" ? "bg-ftu-gold-light text-ftu-gold" :
+                        s.grade === "Tốt" ? "bg-success/10 text-success" :
+                        s.grade === "Khá" ? "bg-info/10 text-info" :
+                        s.grade === "Trung bình" ? "bg-warning/10 text-warning" :
+                        "bg-destructive/10 text-destructive"
+                      }`}>{s.grade}</span>
+                    </td>
+                    <td className="p-3 text-right">
+                      {editingId === s.id ? (
+                        <Button size="sm" variant="outline" onClick={() => handleSaveScore(s.id)}>
+                          <Save className="w-3.5 h-3.5" />
+                        </Button>
+                      ) : (
+                        <Button size="sm" variant="ghost" onClick={() => { setEditingId(s.id); setEditScore(s.score.toString()); }}>
+                          <Edit2 className="w-3.5 h-3.5" />
+                        </Button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+📄 src/hooks/use-mobile.tsx
+import * as React from "react";
+
+const MOBILE_BREAKPOINT = 768;
+
+export function useIsMobile() {
+  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined);
+
+  React.useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
+    const onChange = () => {
+      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    };
+    mql.addEventListener("change", onChange);
+    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+
+  return !!isMobile;
+}
+📄 src/hooks/use-toast.ts
+import * as React from "react";
+
+import type { ToastActionElement, ToastProps } from "@/components/ui/toast";
+
+const TOAST_LIMIT = 1;
+const TOAST_REMOVE_DELAY = 1000000;
+
+type ToasterToast = ToastProps & {
+  id: string;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  action?: ToastActionElement;
+};
+
+const actionTypes = {
+  ADD_TOAST: "ADD_TOAST",
+  UPDATE_TOAST: "UPDATE_TOAST",
+  DISMISS_TOAST: "DISMISS_TOAST",
+  REMOVE_TOAST: "REMOVE_TOAST",
+} as const;
+
+let count = 0;
+
+function genId() {
+  count = (count + 1) % Number.MAX_SAFE_INTEGER;
+  return count.toString();
+}
+
+type ActionType = typeof actionTypes;
+
+type Action =
+  | {
+      type: ActionType["ADD_TOAST"];
+      toast: ToasterToast;
+    }
+  | {
+      type: ActionType["UPDATE_TOAST"];
+      toast: Partial<ToasterToast>;
+    }
+  | {
+      type: ActionType["DISMISS_TOAST"];
+      toastId?: ToasterToast["id"];
+    }
+  | {
+      type: ActionType["REMOVE_TOAST"];
+      toastId?: ToasterToast["id"];
+    };
+
+interface State {
+  toasts: ToasterToast[];
+}
+
+const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
+
+const addToRemoveQueue = (toastId: string) => {
+  if (toastTimeouts.has(toastId)) {
+    return;
+  }
+
+  const timeout = setTimeout(() => {
+    toastTimeouts.delete(toastId);
+    dispatch({
+      type: "REMOVE_TOAST",
+      toastId: toastId,
+    });
+  }, TOAST_REMOVE_DELAY);
+
+  toastTimeouts.set(toastId, timeout);
+};
+
+export const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case "ADD_TOAST":
+      return {
+        ...state,
+        toasts: [action.toast, ...state.toasts].slice(0, TOAST_LIMIT),
+      };
+
+    case "UPDATE_TOAST":
+      return {
+        ...state,
+        toasts: state.toasts.map((t) => (t.id === action.toast.id ? { ...t, ...action.toast } : t)),
+      };
+
+    case "DISMISS_TOAST": {
+      const { toastId } = action;
+
+      // ! Side effects ! - This could be extracted into a dismissToast() action,
+      // but I'll keep it here for simplicity
+      if (toastId) {
+        addToRemoveQueue(toastId);
+      } else {
+        state.toasts.forEach((toast) => {
+          addToRemoveQueue(toast.id);
+        });
+      }
+
+      return {
+        ...state,
+        toasts: state.toasts.map((t) =>
+          t.id === toastId || toastId === undefined
+            ? {
+                ...t,
+                open: false,
+              }
+            : t,
+        ),
+      };
+    }
+    case "REMOVE_TOAST":
+      if (action.toastId === undefined) {
+        return {
+          ...state,
+          toasts: [],
+        };
+      }
+      return {
+        ...state,
+        toasts: state.toasts.filter((t) => t.id !== action.toastId),
+      };
+  }
+};
+
+const listeners: Array<(state: State) => void> = [];
+
+let memoryState: State = { toasts: [] };
+
+function dispatch(action: Action) {
+  memoryState = reducer(memoryState, action);
+  listeners.forEach((listener) => {
+    listener(memoryState);
+  });
+}
+
+type Toast = Omit<ToasterToast, "id">;
+
+function toast({ ...props }: Toast) {
+  const id = genId();
+
+  const update = (props: ToasterToast) =>
+    dispatch({
+      type: "UPDATE_TOAST",
+      toast: { ...props, id },
+    });
+  const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id });
+
+  dispatch({
+    type: "ADD_TOAST",
+    toast: {
+      ...props,
+      id,
+      open: true,
+      onOpenChange: (open) => {
+        if (!open) dismiss();
+      },
+    },
+  });
+
+  return {
+    id: id,
+    dismiss,
+    update,
+  };
+}
+
+function useToast() {
+  const [state, setState] = React.useState<State>(memoryState);
+
+  React.useEffect(() => {
+    listeners.push(setState);
+    return () => {
+      const index = listeners.indexOf(setState);
+      if (index > -1) {
+        listeners.splice(index, 1);
+      }
+    };
+  }, [state]);
+
+  return {
+    ...state,
+    toast,
+    dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
+  };
+}
+
+export { useToast, toast };
